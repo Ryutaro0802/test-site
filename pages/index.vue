@@ -1,68 +1,69 @@
 <template>
-  <section class="container">
     <div>
-      <logo />
-      <h1 class="title">
-        test-site
-      </h1>
-      <h2 class="subtitle">
-        My extraordinary Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >GitHub</a>
-      </div>
+       <nuxt-link to="/articles/" class="box" v-for="article in articles" :key="article.key">
+        <article class="media">
+          <div class="media-left">
+            <figure class="image is-64x64">
+              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+            </figure>
+          </div>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong>{{ article.title }}</strong> <small>@johnsmith</small> <small>31m</small>
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+              </p>
+            </div>
+            <nav class="level is-mobile">
+              <div class="level-left">
+                <a class="level-item" aria-label="reply">
+                  <span class="icon is-small">
+                    <i class="fas fa-reply" aria-hidden="true"></i>
+                  </span>
+                </a>
+                <a class="level-item" aria-label="retweet">
+                  <span class="icon is-small">
+                    <i class="fas fa-retweet" aria-hidden="true"></i>
+                  </span>
+                </a>
+                <a class="level-item" aria-label="like">
+                  <span class="icon is-small">
+                    <i class="fas fa-heart" aria-hidden="true"></i>
+                  </span>
+                </a>
+              </div>
+            </nav>
+          </div>
+        </article>
+      </nuxt-link>
     </div>
-  </section>
+
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
+const articles = [
+  {
+    id: 0,
+    title: 'title'
+  },
+  {
+    id: 1,
+    title: 'title'
+  },
+  {
+    id: 2,
+    title: 'title'
+  }
+]
 export default {
-  components: {
-    Logo
+  data() {
+    return {
+      articles
+    }
   }
 }
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>
