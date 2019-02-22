@@ -1,8 +1,7 @@
 <template>
-    <div>
-      AboutPage
-    </div>
-
+  <div>
+    AboutPage
+  </div>
 </template>
 
 <script>
@@ -19,14 +18,14 @@ const articles = [
     id: 2,
     title: 'title'
   }
-]
+];
 export default {
   data() {
     return {
       articles
-    }
+    };
   }
-}
+};
 </script>
 
 <style>
