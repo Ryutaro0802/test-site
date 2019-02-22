@@ -47,9 +47,6 @@
     </nav>
     <!-- END NAV -->
 
-    <!-- <h1 class="title">
-        test-site
-    </h1> -->
     <div class="container">
       <nuxt />
     </div>

@@ -85,3 +85,9 @@ sw.*
 
 # Firebase hosting file
 hosting*
+
+# env file
+.envrc
+
+# firebase env
+firebase-env.js

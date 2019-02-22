@@ -1,10 +1,14 @@
 <template>
   <div>
     <h1 class="title is-1">
-      Author Page
+      Author
     </h1>
 
-    <form action="">
+    <div>
+      <a class="button" @click="callAuth">SignIn</a>
+    </div>
+
+    <form action>
       <div class="field">
         <label class="label">Title</label>
         <div class="control">
@@ -19,7 +23,6 @@
         </div>
       </div>
 
-
       <div class="field is-grouped">
         <div class="control">
           <button class="button is-link">
@@ -32,25 +35,28 @@
 </template>
 
 <script>
-const articles = [
-  {
-    id: 0,
-    title: 'title'
-  },
-  {
-    id: 1,
-    title: 'title'
-  },
-  {
-    id: 2,
-    title: 'title'
-  }
-];
+import { mapGetters, mapActions } from 'vuex';
+import auth from '~/plugins/auth';
+
 export default {
-  data() {
-    return {
-      articles
-    };
+  // data() {
+  // 	return {
+  // 	};
+  // }
+  async mounted() {
+    if (this.user) {
+      return;
+    }
+    const user = await auth();
+    console.log(user);
+
+    this.$store.commit('setUser', { user });
+  },
+  computed: {
+    ...mapGetters(['user'])
+  },
+  methods: {
+    ...mapActions(['callAuth'])
   }
 };
 </script>
