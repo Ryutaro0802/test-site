@@ -2,10 +2,14 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import firebase from '~/plugins/firebase';
 import { firebaseMutations, firebaseAction } from 'vuexfire';
+const firestore = firebase.firestore();
+const articlesCollection = firestore.collection('articles');
 
-// const firestore = firebase.firestore();
-const db = firebase.database();
-const memosRef = db.ref(`articles`);
+// if (process.browser) {
+//   const settings = { timestampsInSnapshots: true };
+//   firestore.settings(settings);
+// }
+// const provider = new firebase.auth.GoogleAuthProvider();
 
 Vue.use(Vuex);
 
@@ -35,18 +39,30 @@ const createStore = () => {
       ...firebaseMutations
     },
     actions: {
-      INIT_MEMOS: firebaseAction(({ bindFirebaseRef }, uid) => {
-        return new Promise((resolve, reject) => {
-          bindFirebaseRef('memos', memosRef.child(uid), {
-            readyCallback: () => {
-              resolve();
-            }
+      INIT_ARTICLES: firebaseAction(({ bindFirebaseRef }) => {
+        bindFirebaseRef('posts', articlesCollection);
+      }),
+      // INIT_ARTICLES: firebaseAction(({ bindFirebaseRef }, uid) => {
+      //   return new Promise((resolve, reject) => {
+      //     bindFirebaseRef('articles', articlesRef.child(uid), {
+      //       readyCallback: () => {
+      //         resolve();
+      //       }
+      //     });
+      //   });
+      // }),
+      ADD_POST: firebaseAction(
+        (ctx, { title, text, tags, createdAt, updatedAt }) => {
+          console.log('ADD_POST', title, text, tags, createdAt, updatedAt);
+          articlesCollection.add({
+            title,
+            text,
+            tags,
+            createdAt,
+            updatedAt
           });
-        });
-      }),
-      SAVE_MEMOS: firebaseAction((ctx, { uid, memos }) => {
-        memosRef.child(uid).set(memos);
-      }),
+        }
+      ),
       callAuth() {
         firebase
           .auth()
