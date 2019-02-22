@@ -38,7 +38,6 @@
         </article>
       </nuxt-link>
     </div>
-
 </template>
 
 <script>
