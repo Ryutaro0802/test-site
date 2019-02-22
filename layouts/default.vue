@@ -1,49 +1,49 @@
 <template>
   <div>
     <!-- START NAV -->
-     <nav class="navbar">
-        <div class="container">
-            <div class="navbar-brand">
-              <nuxt-link to="/" class="navbar-item">
-                Test Site
-              </nuxt-link>
-                <span class="navbar-burger burger" data-target="navbarMenu">
-                <span></span>
-                <span></span>
-                <span></span>
-                </span>
-            </div>
-            <div id="navbarMenu" class="navbar-menu">
-                <div class="navbar-end">
-                  <nuxt-link class="navbar-item is-active" to="/">
-                      Home
-                  </nuxt-link>
-                    <nuxt-link class="navbar-item" to="/about">
-                            About
-                    </nuxt-link>
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link">
-                                Account
-                            </a>
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item">
-                                    Dashboard
-                                </a>
-                            <a class="navbar-item">
-                                    Profile
-                                </a>
-                            <a class="navbar-item">
-                                    Settings
-                                </a>
-                            <hr class="navbar-divider">
-                            <div class="navbar-item">
-                                Logout
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <nuxt-link to="/" class="navbar-item">
+            Test Site
+          </nuxt-link>
+          <span class="navbar-burger burger" data-target="navbarMenu">
+            <span />
+            <span />
+            <span />
+          </span>
         </div>
+        <div id="navbarMenu" class="navbar-menu">
+          <div class="navbar-end">
+            <nuxt-link class="navbar-item is-active" to="/">
+              Home
+            </nuxt-link>
+            <nuxt-link class="navbar-item" to="/about">
+              About
+            </nuxt-link>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                Account
+              </a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item">
+                  Dashboard
+                </a>
+                <a class="navbar-item">
+                  Profile
+                </a>
+                <a class="navbar-item">
+                  Settings
+                </a>
+                <hr class="navbar-divider">
+                <div class="navbar-item">
+                  Logout
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </nav>
     <!-- END NAV -->
 
