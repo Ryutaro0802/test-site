@@ -1,10 +1,10 @@
 <template>
   <div>
     <h1 class="title is-1">
-      {{article.title}}
+      {{ article.title }}
     </h1>
     <p>
-      {{article.text}}
+      {{ article.text }}
     </p>
   </div>
 </template>
