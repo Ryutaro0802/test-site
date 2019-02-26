@@ -17,6 +17,7 @@
               class="input"
               type="text"
               name="title"
+              required
               placeholder="Title"
               @input="titleInput"
             >
@@ -26,7 +27,14 @@
         <div class="field">
           <label class="label">Text</label>
           <div class="control">
-            <textarea v-model="text" class="textarea" name="text" placeholder="Text" @input="textInput" />
+            <textarea
+              v-model="text"
+              class="textarea"
+              name="text"
+              required
+              placeholder="Text"
+              @input="textInput"
+            />
           </div>
         </div>
 
@@ -43,6 +51,7 @@
 </template>
 
 <script>
+import dayjs from 'dayjs';
 import { mapGetters, mapActions } from 'vuex';
 import auth from '~/plugins/auth';
 
@@ -70,8 +79,8 @@ export default {
         title: this.title,
         text: this.text,
         tags: [],
-        createdAt: '',
-        updatedAt: ''
+        createdAt: dayjs().format(),
+        updatedAt: dayjs().format()
       });
       this.title = '';
       this.text = '';

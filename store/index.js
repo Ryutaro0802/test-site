@@ -9,7 +9,6 @@ const articlesCollection = firestore.collection('articles');
 //   const settings = { timestampsInSnapshots: true };
 //   firestore.settings(settings);
 // }
-// const provider = new firebase.auth.GoogleAuthProvider();
 
 Vue.use(Vuex);
 
@@ -23,7 +22,7 @@ const createStore = () => {
     }),
     getters: {
       user: state => state.user,
-      articles: state => state.memos,
+      articles: state => state.articles,
       isLoaded: state => state.isLoaded
     },
     mutations: {
@@ -33,27 +32,14 @@ const createStore = () => {
       setUser(state, { user }) {
         state.user = user;
       },
-      setArticles(state, { articles }) {
-        state.articles = articles;
-      },
       ...firebaseMutations
     },
     actions: {
       INIT_ARTICLES: firebaseAction(({ bindFirebaseRef }) => {
-        bindFirebaseRef('posts', articlesCollection);
+        bindFirebaseRef('articles', articlesCollection);
       }),
-      // INIT_ARTICLES: firebaseAction(({ bindFirebaseRef }, uid) => {
-      //   return new Promise((resolve, reject) => {
-      //     bindFirebaseRef('articles', articlesRef.child(uid), {
-      //       readyCallback: () => {
-      //         resolve();
-      //       }
-      //     });
-      //   });
-      // }),
       ADD_POST: firebaseAction(
         (ctx, { title, text, tags, createdAt, updatedAt }) => {
-          console.log('ADD_POST', title, text, tags, createdAt, updatedAt);
           articlesCollection.add({
             title,
             text,

@@ -1,18 +1,19 @@
 <template>
   <div>
-    <nuxt-link v-for="article in articles" :key="article.key" to="/articles/" class="box">
+    <nuxt-link v-for="article in articles" :key="article.key" :to="'/articles/' + article.id" class="box">
       <article class="media">
-        <div class="media-left">
+        <!-- TODO: 画像が出せるようになったらだそう -->
+        <!-- <div class="media-left">
           <figure class="image is-64x64">
             <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
           </figure>
-        </div>
+        </div> -->
         <div class="media-content">
           <div class="content">
             <p>
-              <strong>{{ article.title }}</strong> <small>@johnsmith</small> <small>31m</small>
+              <strong>{{ article.title }}</strong> <small>{{ article.updatedAt }}</small>
               <br>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+              {{ article.text }}
             </p>
           </div>
           <nav class="level is-mobile">
@@ -41,25 +42,18 @@
 </template>
 
 <script>
-const articles = [
-  {
-    id: 0,
-    title: 'title'
-  },
-  {
-    id: 1,
-    title: 'title'
-  },
-  {
-    id: 2,
-    title: 'title'
-  }
-];
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
-  data() {
-    return {
-      articles
-    };
+  async mounted() {
+    await this.$store.dispatch('INIT_ARTICLES');
+    this.loadComplete();
+  },
+  computed: {
+    ...mapGetters(['articles'])
+  },
+  methods: {
+    ...mapActions(['loadComplete'])
   }
 };
 </script>
