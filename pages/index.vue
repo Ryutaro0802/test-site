@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nuxt-link v-for="article in articles" :key="article.key" :to="'/articles/' + article.id" class="box">
+    <nuxt-link v-for="article in articles" :key="article.id" :to="'/articles/' + article.id" class="box">
       <article class="media">
         <!-- TODO: 画像が出せるようになったらだそう -->
         <!-- <div class="media-left">
@@ -45,7 +45,7 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
-  async mounted() {
+  async created() {
     await this.$store.dispatch('INIT_ARTICLES');
     this.loadComplete();
   },
