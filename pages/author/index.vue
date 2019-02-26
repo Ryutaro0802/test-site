@@ -12,14 +12,21 @@
         <div class="field">
           <label class="label">Title</label>
           <div class="control">
-            <input class="input" type="text" name="title" placeholder="Title">
+            <input
+              v-model="title"
+              class="input"
+              type="text"
+              name="title"
+              placeholder="Title"
+              @input="titleInput"
+            >
           </div>
         </div>
 
         <div class="field">
           <label class="label">Text</label>
           <div class="control">
-            <textarea class="textarea" name="text" placeholder="Text" />
+            <textarea v-model="text" class="textarea" name="text" placeholder="Text" @input="textInput" />
           </div>
         </div>
 
@@ -40,10 +47,12 @@ import { mapGetters, mapActions } from 'vuex';
 import auth from '~/plugins/auth';
 
 export default {
-  // data() {
-  // 	return {
-  // 	};
-  // }
+  data() {
+    return {
+      title: '',
+      text: ''
+    };
+  },
   async mounted() {
     if (this.user) {
       return;
@@ -57,14 +66,21 @@ export default {
   methods: {
     addPost(e) {
       e.preventDefault();
-      const formElement = e.target;
       this.ADD_POST({
-        title: formElement.title.value,
-        text: formElement.text.value,
+        title: this.title,
+        text: this.text,
         tags: [],
         createdAt: '',
         updatedAt: ''
       });
+      this.title = '';
+      this.text = '';
+    },
+    titleInput() {
+      this.title = event.target.value;
+    },
+    textInput() {
+      this.text = event.target.value;
     },
     ...mapActions(['callAuth', 'ADD_POST'])
   }
