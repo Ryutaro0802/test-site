@@ -46,7 +46,9 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
   async created() {
-    await this.$store.dispatch('INIT_ARTICLES');
+    if (!this.articles.length) {
+      await this.$store.dispatch('INIT_ARTICLES');
+    }
     this.loadComplete();
   },
   computed: {

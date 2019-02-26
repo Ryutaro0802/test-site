@@ -1,29 +1,31 @@
 <template>
   <div>
-    <p>article</p>
+    <h1 class="title is-1">
+      {{article.title}}
+    </h1>
+    <p>
+      {{article.text}}
+    </p>
   </div>
 </template>
 
 <script>
-const articles = [
-  {
-    id: 0,
-    title: 'title'
-  },
-  {
-    id: 1,
-    title: 'title'
-  },
-  {
-    id: 2,
-    title: 'title'
-  }
-];
+import { mapGetters } from 'vuex';
+
 export default {
-  data() {
-    return {
-      articles
-    };
+  async created() {
+    if (!this.articles.length) {
+      await this.$store.dispatch('INIT_ARTICLES');
+    }
+    console.log(this.$route.params.id);
+  },
+  computed: {
+    article() {
+      return this.articles.find(
+        article => this.$route.params.id === article.id
+      );
+    },
+    ...mapGetters(['articles'])
   }
 };
 </script>
