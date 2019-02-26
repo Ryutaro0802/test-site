@@ -1,30 +1,6 @@
 <template>
   <div>
-    <!-- START NAV -->
-    <nav class="navbar">
-      <div class="container">
-        <div class="navbar-brand">
-          <nuxt-link to="/" class="navbar-item">
-            Test Site
-          </nuxt-link>
-        </div>
-        <div id="navbarMenu" class="navbar-menu">
-          <div class="navbar-end">
-            <nuxt-link class="navbar-item is-active" to="/">
-              Home
-            </nuxt-link>
-            <nuxt-link class="navbar-item" to="/about">
-              About
-            </nuxt-link>
-            <a v-if="user" href="#" class="navbar-item" @click.prevent="signOut">
-              Logout
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <!-- END NAV -->
-
+    <navbar :user="user"></navbar>
     <div class="container">
       <nuxt />
     </div>
@@ -33,8 +9,12 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import navbar from '~/components/organisms/navbar';
 
 export default {
+  components: {
+    navbar
+  },
   computed: {
     ...mapGetters(['user'])
   },

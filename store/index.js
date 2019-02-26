@@ -16,13 +16,18 @@ const createStore = () => {
   return new Vuex.Store({
     state: () => ({
       user: null,
-      article: null,
+      articleId: null,
       articles: [],
       isLoaded: false
     }),
     getters: {
       user: state => state.user,
       articles: state => state.articles,
+      article: state => {
+        return state.articleId
+          ? state.articles.find(article => article.id === state.articleId)
+          : null;
+      },
       isLoaded: state => state.isLoaded
     },
     mutations: {
@@ -31,6 +36,9 @@ const createStore = () => {
       },
       setUser(state, { user }) {
         state.user = user;
+      },
+      setArticleId(state, { id }) {
+        state.articleId = id;
       },
       ...firebaseMutations
     },

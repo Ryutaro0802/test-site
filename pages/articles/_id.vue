@@ -1,31 +1,32 @@
 <template>
   <div>
-    <h1 class="title is-1">
-      {{ article.title }}
-    </h1>
-    <p>
-      {{ article.text }}
-    </p>
+    <template v-if="article">
+      <h1 class="title is-1">
+        {{ article.title }}
+      </h1>
+      <p>
+        {{ article.text }}
+      </p>
+    </template>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
-  async created() {
-    if (!this.articles.length) {
-      await this.$store.dispatch('INIT_ARTICLES');
-    }
-    console.log(this.$route.params.id);
-  },
   computed: {
-    article() {
-      return this.articles.find(
-        article => this.$route.params.id === article.id
-      );
-    },
-    ...mapGetters(['articles'])
+    ...mapGetters(['articles', 'article'])
+  },
+  created() {
+    // if (!this.articles.length) {
+    this.$store.dispatch('INIT_ARTICLES');
+    console.log(this.$route.params.id);
+    this.setArticleId({ id: this.$route.params.id });
+    // }
+  },
+  methods: {
+    ...mapMutations(['setArticleId'])
   }
 };
 </script>
