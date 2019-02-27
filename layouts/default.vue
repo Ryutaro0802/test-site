@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar :user="user"></navbar>
+    <navbar :user="user" />
     <div class="container">
       <nuxt />
     </div>

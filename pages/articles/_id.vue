@@ -18,12 +18,11 @@ export default {
   computed: {
     ...mapGetters(['articles', 'article'])
   },
-  created() {
-    // if (!this.articles.length) {
-    this.$store.dispatch('INIT_ARTICLES');
-    console.log(this.$route.params.id);
+  async created() {
+    if (!this.articles.length) {
+      await this.$store.dispatch('INIT_ARTICLES');
+    }
     this.setArticleId({ id: this.$route.params.id });
-    // }
   },
   methods: {
     ...mapMutations(['setArticleId'])

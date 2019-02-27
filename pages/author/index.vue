@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="title is-1">
-      Author
+      記事を書く
     </h1>
 
     <div v-if="!user">
@@ -51,26 +51,27 @@
 </template>
 
 <script>
-import dayjs from 'dayjs';
+// import dayjs from 'dayjs';
 import { mapGetters, mapActions } from 'vuex';
 import auth from '~/plugins/auth';
 
 export default {
+  layout: 'column2',
   data() {
     return {
       title: '',
       text: ''
     };
   },
-  async mounted() {
+  computed: {
+    ...mapGetters(['user'])
+  },
+  async created() {
     if (this.user) {
       return;
     }
     const user = await auth();
     this.$store.commit('setUser', { user });
-  },
-  computed: {
-    ...mapGetters(['user'])
   },
   methods: {
     addPost(e) {
@@ -79,8 +80,8 @@ export default {
         title: this.title,
         text: this.text,
         tags: [],
-        createdAt: dayjs().format(),
-        updatedAt: dayjs().format()
+        createdAt: Date.now(),
+        updatedAt: Date.now()
       });
       this.title = '';
       this.text = '';

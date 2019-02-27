@@ -45,14 +45,14 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
+  computed: {
+    ...mapGetters(['articles'])
+  },
   async created() {
     if (!this.articles.length) {
       await this.$store.dispatch('INIT_ARTICLES');
     }
     this.loadComplete();
-  },
-  computed: {
-    ...mapGetters(['articles'])
   },
   methods: {
     ...mapActions(['loadComplete'])
