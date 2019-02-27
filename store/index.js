@@ -46,9 +46,23 @@ const createStore = () => {
       INIT_ARTICLES: firebaseAction(({ bindFirebaseRef }) => {
         bindFirebaseRef('articles', articlesCollection);
       }),
-      ADD_POST: firebaseAction(
+      ADD_ARTICLE: firebaseAction(
         (ctx, { title, text, tags, createdAt, updatedAt }) => {
           articlesCollection.add({
+            title,
+            text,
+            tags,
+            createdAt,
+            updatedAt
+          });
+        }
+      ),
+      DELETE_ARTICLE: firebaseAction((ctx, { id }) => {
+        articlesCollection.doc(id).delete();
+      }),
+      EDIT_ARTICLE: firebaseAction(
+        (ctx, { id }, { title, text, tags, createdAt, updatedAt }) => {
+          articlesCollection.doc(id).set({
             title,
             text,
             tags,

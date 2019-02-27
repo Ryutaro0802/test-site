@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="title is-1">
+    <h1 class="title is-3">
       記事の管理
     </h1>
 
@@ -9,17 +9,29 @@
         <tr>
           <th>タイトル</th>
           <th>本文</th>
+          <th>投稿日時</th>
           <th>削除</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="article in articles" :key="article.id">
-          <th>{{ article.title }}</th>
+          <th>
+            <nuxt-link :to="'/author/articles/' + article.id">
+              {{ article.title }}
+            </nuxt-link>
+          </th>
           <td>
             {{ article.text }}
           </td>
           <td>
-            <a href="#">Leicester City</a>
+            {{ article.createdAt }}
+          </td>
+          <td>
+            <a href="#" @click.prevent="deleteArticle(article.id)">
+              <i class="material-icons">
+                delete
+              </i>
+            </a>
           </td>
         </tr>
       </tbody>
@@ -42,10 +54,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['callAuth', 'ADD_POST'])
+    deleteArticle(id) {
+      // this.$store.commit('deleteArticle', { id });
+      this.DELETE_ARTICLE({ id });
+    },
+    ...mapActions(['DELETE_ARTICLE'])
   }
 };
 </script>
-
-<style>
-</style>

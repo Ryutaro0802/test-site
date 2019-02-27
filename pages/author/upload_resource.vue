@@ -52,8 +52,6 @@
 
 <script>
 // import dayjs from 'dayjs';
-import { mapGetters, mapActions } from 'vuex';
-import auth from '~/plugins/auth';
 
 export default {
   layout: 'column2',
@@ -62,37 +60,6 @@ export default {
       title: '',
       text: ''
     };
-  },
-  computed: {
-    ...mapGetters(['user'])
-  },
-  async created() {
-    if (this.user) {
-      return;
-    }
-    const user = await auth();
-    this.$store.commit('setUser', { user });
-  },
-  methods: {
-    addPost(e) {
-      e.preventDefault();
-      this.ADD_POST({
-        title: this.title,
-        text: this.text,
-        tags: [],
-        createdAt: Date.now(),
-        updatedAt: Date.now()
-      });
-      this.title = '';
-      this.text = '';
-    },
-    titleInput() {
-      this.title = event.target.value;
-    },
-    textInput() {
-      this.text = event.target.value;
-    },
-    ...mapActions(['callAuth', 'ADD_POST'])
   }
 };
 </script>

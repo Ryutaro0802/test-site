@@ -1,9 +1,8 @@
 <template>
   <div>
-    <h1 class="title is-1">
+    <h1 class="title is-3">
       記事を書く
     </h1>
-
     <div v-if="!user">
       <a class="button" @click="callAuth">SignIn</a>
     </div>
@@ -69,7 +68,7 @@ export default {
   methods: {
     addPost(e) {
       e.preventDefault();
-      this.ADD_POST({
+      this.ADD_ARTICLE({
         title: this.title,
         text: this.text,
         tags: [],
@@ -85,7 +84,7 @@ export default {
     textInput() {
       this.text = event.target.value;
     },
-    ...mapActions(['callAuth', 'ADD_POST'])
+    ...mapActions(['callAuth', 'ADD_ARTICLE'])
   }
 };
 </script>
