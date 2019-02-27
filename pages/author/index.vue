@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="title is-1">
-      記事を書く
+      ログイン
     </h1>
     <div v-if="!user">
       <a class="button" @click="callAuth">SignIn</a>
@@ -13,18 +13,11 @@
 </template>
 
 <script>
-// import dayjs from 'dayjs';
 import { mapGetters, mapActions } from 'vuex';
 import auth from '~/plugins/auth';
 
 export default {
   layout: 'column2',
-  data() {
-    return {
-      title: '',
-      text: ''
-    };
-  },
   computed: {
     ...mapGetters(['user'])
   },
@@ -36,25 +29,7 @@ export default {
     this.$store.commit('setUser', { user });
   },
   methods: {
-    addPost(e) {
-      e.preventDefault();
-      this.ADD_POST({
-        title: this.title,
-        text: this.text,
-        tags: [],
-        createdAt: Date.now(),
-        updatedAt: Date.now()
-      });
-      this.title = '';
-      this.text = '';
-    },
-    titleInput() {
-      this.title = event.target.value;
-    },
-    textInput() {
-      this.text = event.target.value;
-    },
-    ...mapActions(['callAuth', 'ADD_POST'])
+    ...mapActions(['callAuth'])
   }
 };
 </script>

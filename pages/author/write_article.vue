@@ -53,10 +53,10 @@
 <script>
 // import dayjs from 'dayjs';
 import { mapGetters, mapActions } from 'vuex';
-import auth from '~/plugins/auth';
 
 export default {
   layout: 'column2',
+  middleware: 'authenticated',
   data() {
     return {
       title: '',
@@ -65,13 +65,6 @@ export default {
   },
   computed: {
     ...mapGetters(['user'])
-  },
-  async created() {
-    if (this.user) {
-      return;
-    }
-    const user = await auth();
-    this.$store.commit('setUser', { user });
   },
   methods: {
     addPost(e) {
