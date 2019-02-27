@@ -39,10 +39,26 @@
         <div class="column is-3 ">
           <aside class="menu is-hidden-mobile">
             <ul class="menu-list">
-              <li><a class="is-active">記事を書く</a></li>
-              <li><a>記事の管理</a></li>
-              <li><a>タグ管理</a></li>
-              <li><a>リソースアップロード</a></li>
+              <li>
+                <nuxt-link to="/author/write_article" class="is-active">
+                  記事を書く
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link to="/author/management_articles">
+                  記事の管理
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link to="/author/management_tags">
+                  タグ管理
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link to="/author/upload_resource">
+                  リソースアップロード
+                </nuxt-link>
+              </li>
             </ul>
           </aside>
         </div>

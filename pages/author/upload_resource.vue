@@ -1,14 +1,52 @@
 <template>
   <div>
     <h1 class="title is-1">
-      記事を書く
+      リソースアップロード
     </h1>
+
     <div v-if="!user">
       <a class="button" @click="callAuth">SignIn</a>
     </div>
-    <div v-else>
-      ログイン済み
-    </div>
+    <template v-else>
+      <form @submit.prevent="addPost">
+        <div class="field">
+          <label class="label">Title</label>
+          <div class="control">
+            <input
+              v-model="title"
+              class="input"
+              type="text"
+              name="title"
+              required
+              placeholder="Title"
+              @input="titleInput"
+            >
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Text</label>
+          <div class="control">
+            <textarea
+              v-model="text"
+              class="textarea"
+              name="text"
+              required
+              placeholder="Text"
+              @input="textInput"
+            />
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link">
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </template>
   </div>
 </template>
 
