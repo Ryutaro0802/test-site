@@ -22,13 +22,7 @@
       <div class="field">
         <label class="label">Text</label>
         <div class="control">
-          <textarea
-            v-model="articleText"
-            class="textarea"
-            name="text"
-            required
-            placeholder="Text"
-          />
+          <textarea v-model="articleText" class="textarea" name="text" required placeholder="Text" />
         </div>
       </div>
 
@@ -79,16 +73,19 @@ export default {
   },
   methods: {
     editArticle() {
-      this.EDIT_ARTICLE(
-        { id: this.$route.params.id },
-        {
+      if (!this.title || !this.text) {
+        return;
+      }
+      this.EDIT_ARTICLE({
+        id: this.$route.params.id,
+        article: {
           title: this.title,
           text: this.text,
           tags: this.article.tags,
           createdAt: this.article.createdAt,
-          updatedAt: Date.now()
+          updatedAt: new Date()
         }
-      );
+      });
     },
     ...mapMutations(['setArticleId']),
     ...mapActions(['EDIT_ARTICLE'])
