@@ -3,40 +3,26 @@
     <h1 class="title is-3">
       タグの管理
     </h1>
+    <span v-for="tag in tags" :key="tag.id" class="tag is-primary">
+      {{ tag.label }}
+    </span>
+    <input class="input" type="text" placeholder="新しいタグ">
   </div>
 </template>
 
 <script>
-// import dayjs from 'dayjs';
-import { mapGetters, mapActions } from 'vuex';
-import auth from '~/plugins/auth';
+import { mapGetters } from 'vuex';
 
 export default {
   layout: 'column2',
-  data() {
-    return {
-      title: '',
-      text: ''
-    };
-  },
+  middleware: 'authenticated',
   computed: {
-    ...mapGetters(['user'])
+    ...mapGetters(['tags'])
   },
   async created() {
-    if (this.user) {
-      return;
+    if (!this.tags.length) {
+      await this.$store.dispatch('INIT_TAGS');
     }
-    const user = await auth();
-    this.$store.commit('setUser', { user });
-  },
-  methods: {
-    titleInput() {
-      this.title = event.target.value;
-    },
-    textInput() {
-      this.text = event.target.value;
-    },
-    ...mapActions(['callAuth'])
   }
 };
 </script>

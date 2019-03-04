@@ -4,6 +4,7 @@ import firebase from '~/plugins/firebase';
 import { firebaseMutations, firebaseAction } from 'vuexfire';
 const firestore = firebase.firestore();
 const articlesCollection = firestore.collection('articles');
+const tagsCollection = firestore.collection('tags');
 
 // if (process.browser) {
 //   const settings = { timestampsInSnapshots: true };
@@ -18,11 +19,13 @@ const createStore = () => {
       user: null,
       articleId: null,
       articles: [],
+      tags: [],
       isLoaded: false
     }),
     getters: {
       user: state => state.user,
       articles: state => state.articles,
+      tags: state => state.tags,
       article: state => {
         return state.articleId
           ? state.articles.find(article => article.id === state.articleId)
@@ -71,6 +74,9 @@ const createStore = () => {
           });
         }
       ),
+      INIT_TAGS: firebaseAction(({ bindFirebaseRef }) => {
+        bindFirebaseRef('tags', tagsCollection);
+      }),
       callAuth() {
         firebase
           .auth()
