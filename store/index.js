@@ -63,17 +63,15 @@ const createStore = () => {
       DELETE_ARTICLE: firebaseAction((ctx, { id }) => {
         articlesCollection.doc(id).delete();
       }),
-      EDIT_ARTICLE: firebaseAction(
-        (ctx, { id }, { title, text, tags, createdAt, updatedAt }) => {
-          articlesCollection.doc(id).set({
-            title,
-            text,
-            tags,
-            createdAt,
-            updatedAt
-          });
-        }
-      ),
+      EDIT_ARTICLE: firebaseAction((ctx, payload) => {
+        articlesCollection.doc(payload.id).set({
+          title: payload.article.title,
+          text: payload.article.text,
+          tags: payload.article.tags,
+          createdAt: payload.article.createdAt,
+          updatedAt: payload.article.updatedAt
+        });
+      }),
       INIT_TAGS: firebaseAction(({ bindFirebaseRef }) => {
         bindFirebaseRef('tags', tagsCollection);
       }),
