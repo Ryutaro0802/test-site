@@ -3,10 +3,14 @@
     <h1 class="title is-3">
       タグの管理
     </h1>
-    <span v-for="tag in tags" :key="tag.id" class="tag is-primary">
-      {{ tag.label }}
-    </span>
-    <input class="input" type="text" placeholder="新しいタグ">
+    <div>
+      <span v-for="tag in tags" :key="tag.id" class="tag is-primary">
+        {{ tag.label }}
+      </span>
+    </div>
+    <form @submit.prevent="tagSubmit">
+      <input class="input" type="text" placeholder="新しいタグ">
+    </form>
   </div>
 </template>
 

@@ -43,12 +43,6 @@ export default {
     $route() {
       this.path = this.$route.path;
     }
-  },
-  created() {
-    console.log('created');
-    window.onpopstate = function(event) {
-      alert('alert');
-    };
   }
 };
 </script>
