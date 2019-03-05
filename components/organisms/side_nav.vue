@@ -1,7 +1,7 @@
 <template>
   <aside class="menu is-hidden-mobile">
     <ul class="menu-list">
-      <SideNavItem v-for="(listItem, index) in listItems" :key="index" :list-item="listItem">
+      <SideNavItem v-for="(listItem, index) in listItems" :key="index" :list-item="listItem" :path="path">
         {{ listItem.label }}
       </SideNavItem>
     </ul>
@@ -35,8 +35,14 @@ export default {
           label: 'リソースアップロード',
           href: '/author/upload_resource'
         }
-      }
+      },
+      path: this.$route.path
     };
+  },
+  watch: {
+    $route() {
+      this.path = this.$route.path;
+    }
   },
   created() {
     console.log('created');

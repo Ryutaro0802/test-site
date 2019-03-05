@@ -12,6 +12,10 @@ export default {
     listItem: {
       type: Object,
       default: () => {}
+    },
+    path: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -22,9 +26,8 @@ export default {
   computed: {
     classObject() {
       const href = this.listItem.href;
-      const pathName = window.location.pathname;
       return {
-        'is-active': href === pathName
+        'is-active': href === this.path
       };
     }
   }
