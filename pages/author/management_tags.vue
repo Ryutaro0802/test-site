@@ -9,17 +9,21 @@
       </span>
     </div>
     <form @submit.prevent="tagSubmit">
-      <input class="input" type="text" placeholder="新しいタグ">
+      <BlInput placeholder="新しいタグ" />
     </form>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import BlInput from '~/components/atoms/bl-input';
 
 export default {
   layout: 'column2',
   middleware: 'authenticated',
+  components: {
+    BlInput
+  },
   computed: {
     ...mapGetters(['tags'])
   },

@@ -1,75 +1,119 @@
 <template>
-  <div>
-    <template v-if="type !== 'textarea'">
-      <input
-        ref="input"
-        class="input"
-        type="text"
-        :tabindex="tabindex"
-        v-bind="$attrs"
-        :disabled="disabled"
-        :readonly="readonly"
-        :value="nativeInputValue"
-        @input="handleInput"
-        @change="handleChange"
-        @focus="handleFocus"
-        @blur="handleBlur"
-      >
-    </template>
+  <div class="control" :class="rootClasses">
+    <input
+      v-if="type !== 'textarea'"
+      ref="input"
+      class="input"
+      :class="[nputClasses, customClass]"
+      :type="type"
+      :autocomplete="autocomplete"
+      :maxlength="maxlength"
+      :value="computedValue"
+      v-bind="$attrs"
+      @input="onInput"
+      @blur="onBlur"
+      @focus="onFocus"
+    >
     <textarea
       v-else
       ref="textarea"
-      :tabindex="tabindex"
-      :value="nativeInputValue"
-      :disabled="disabled"
-      :readonly="readonly"
+      class="textarea"
+      :class="[inputClasses, customClass]"
+      :maxlength="maxlength"
+      :value="computedValue"
       v-bind="$attrs"
-      @input="handleInput"
-      @change="handleChange"
-      @focus="handleFocus"
-      @blur="handleBlur"
+      @input="onInput"
+      @blur="onBlur"
+      @focus="onFocus"
     />
+    <small v-if="maxlength && hasCounter && type !== 'number'" class="help counter" :class="{ 'is-invisible': !isFocused }">
+      {{ valueLength }} / {{ maxLength }}
+    </small>
   </div>
 </template>
-
 <script>
+import FormElementMixin from '~/components/mixin/form_element_mixin';
+
 export default {
   name: 'BlInput',
+  mixins: [FormElementMixin],
+  inheritAttrs: false,
   props: {
-    value: [String, Number],
-    size: String,
-    disabled: Boolean,
-    readonly: Boolean,
+    value: [Number, String],
     type: {
       type: String,
       default: 'text'
     },
-    autocomplete: {
-      type: String,
-      default: 'off'
+    passwordReveal: Boolean,
+    hasCounter: {
+      type: Boolean,
+      default: false
     },
-    tabindex: String
+    customClass: {
+      type: String,
+      default: ''
+    }
   },
   data() {
     return {
-      hovering: {
-        type: Boolean,
-        default: false
-      },
-      focused: {
-        type: Boolean,
-        default: false
-      }
+      newValue: this.value,
+      newType: this.type,
+      newAutoComplete: this.autocomplete,
+      isPasswordVisible: false,
+      elementRef: this.type === 'textarea' ? 'textarea' : 'input'
     };
   },
-  methods: {
-    getInput() {
-      return this.$refs.input || this.$refs.textarea;
+  computed: {
+    computedValue: {
+      get() {
+        return this.newValue;
+      },
+      set(value) {
+        this.newValue = value;
+        this.$emit('input', value);
+        !this.isValid && this.checkHtml5Validity();
+      }
     },
-    clear() {
-      this.$emit('input', '');
-      this.$emit('change', '');
-      this.$emit('clear');
+    rootClasses() {
+      return [
+        this.size,
+        {
+          'is-expanded': this.expanded,
+          'is-loading': this.loading,
+          'is-clearfix': !this.hasMessage
+        }
+      ];
+    },
+    inputClasses() {
+      return [this.statusType, this.size, { 'is-rounded': this.rounded }];
+    },
+    hasMessage() {
+      return !!this.statusMessage;
+    },
+    valueLength() {
+      if (typeof this.computedValue === 'string') {
+        return this.computedValue.length;
+      } else if (typeof this.computedValue === 'number') {
+        return this.computedValue.toString().length;
+      }
+      return 0;
+    }
+  },
+  // watchは必要だったら追加
+  methods: {
+    togglePasswordVisibility() {
+      this.isPasswordVisible = !this.isPasswordVisible;
+      this.newType = this.isPasswordVisible ? 'text' : 'password';
+      this.$nextTick(() => {
+        this.$refs.input.focus();
+      });
+    },
+    onInput(event) {
+      this.$nextTick(() => {
+        if (event.target) {
+          this.computedValue = event.target.value;
+        }
+      });
     }
   }
 };
