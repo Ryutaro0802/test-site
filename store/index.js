@@ -75,6 +75,11 @@ const createStore = () => {
       INIT_TAGS: firebaseAction(({ bindFirebaseRef }) => {
         bindFirebaseRef('tags', tagsCollection);
       }),
+      ADD_TAG: firebaseAction((ctx, { label }) => {
+        tagsCollection.add({
+          label
+        });
+      }),
       callAuth() {
         firebase
           .auth()

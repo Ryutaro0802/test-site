@@ -4,7 +4,7 @@
       v-if="type !== 'textarea'"
       ref="input"
       class="input"
-      :class="[nputClasses, customClass]"
+      :class="[inputClasses, customClass]"
       :type="type"
       :autocomplete="autocomplete"
       :maxlength="maxlength"

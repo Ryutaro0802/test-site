@@ -4,18 +4,16 @@
       タグの管理
     </h1>
     <div>
-      <span v-for="tag in tags" :key="tag.id" class="tag is-primary">
-        {{ tag.label }}
-      </span>
+      <span v-for="tag in tags" :key="tag.id" class="tag is-primary">{{ tag.label }}</span>
     </div>
     <form @submit.prevent="tagSubmit">
-      <BlInput placeholder="新しいタグ" />
+      <BlInput v-model="newTag" placeholder="新しいタグ" />
     </form>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import BlInput from '~/components/atoms/bl-input';
 
 export default {
@@ -24,6 +22,11 @@ export default {
   components: {
     BlInput
   },
+  data() {
+    return {
+      newTag: ''
+    };
+  },
   computed: {
     ...mapGetters(['tags'])
   },
@@ -31,6 +34,15 @@ export default {
     if (!this.tags.length) {
       await this.$store.dispatch('INIT_TAGS');
     }
+  },
+  methods: {
+    tagSubmit() {
+      this.ADD_TAG({
+        label: this.newTag
+      });
+      this.newTag = '';
+    },
+    ...mapActions(['ADD_TAG'])
   }
 };
 </script>

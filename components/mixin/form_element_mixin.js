@@ -36,23 +36,23 @@ export default {
       this.$emit('focus', $event);
     },
     checkHtml5Validity() {
-      if (!this.useHtml5Validation) {
-        return;
-      }
-      if (this.$refs[this.$data.elementRef] === undefined) {
-        return;
-      }
-      const el = this.$el.querySelector(this.$data.elementRef);
-      let type = null;
-      let message = null;
-      let isValid = true;
-      if (!el.checkValidity) {
-        type = 'is-danger';
-        message = el.validationMessage;
-        isValid = false;
-      }
-      this.isValid = isValid;
-      return this.isValid;
+      // if (!this.useHtml5Validation) {
+      //   return;
+      // }
+      // if (this.$refs[this.$data.elementRef] === undefined) {
+      //   return;
+      // }
+      // const el = this.$el.querySelector(this.$data.elementRef);
+      // let type = null;
+      // let message = null;
+      // let isValid = true;
+      // if (!el.checkValidity) {
+      //   type = 'is-danger';
+      //   message = el.validationMessage;
+      //   isValid = false;
+      // }
+      // this.isValid = isValid;
+      // return this.isValid;
     }
   }
 };
