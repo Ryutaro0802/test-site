@@ -1,19 +1,22 @@
 <template>
   <div>
-    <navbar :user="user" />
+    <BlNavbar :user="user" />
     <div class="container">
       <nuxt />
     </div>
+    <BlFooter />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import navbar from '~/components/organisms/navbar';
+import BlNavbar from '~/components/organisms/bl-navbar';
+import BlFooter from '~/components/organisms/bl-footer';
 
 export default {
   components: {
-    navbar
+    BlNavbar,
+    BlFooter
   },
   computed: {
     ...mapGetters(['user'])

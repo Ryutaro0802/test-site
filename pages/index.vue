@@ -1,50 +1,50 @@
 <template>
   <div>
-    <nuxt-link v-for="article in articles" :key="article.id" :to="'/articles/' + article.id" class="box">
-      <article class="media">
-        <!-- TODO: 画像が出せるようになったらだそう -->
-        <!-- <div class="media-left">
-          <figure class="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-          </figure>
-        </div> -->
-        <div class="media-content">
-          <div class="content">
-            <p>
-              <strong>{{ article.title }}</strong> <small>{{ article.updatedAt }}</small>
-              <br>
-              {{ article.text }}
+    <BlCard v-for="article in articles" :key="article.id">
+      <template slot="cardContent">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">
+              <nuxt-link :to="'/articles/' + article.id">
+                {{ article.title }}
+              </nuxt-link>
             </p>
           </div>
-          <nav class="level is-mobile">
-            <div class="level-left">
-              <a class="level-item" aria-label="reply">
-                <span class="icon is-small">
-                  <i class="fas fa-reply" aria-hidden="true" />
-                </span>
-              </a>
-              <a class="level-item" aria-label="retweet">
-                <span class="icon is-small">
-                  <i class="fas fa-retweet" aria-hidden="true" />
-                </span>
-              </a>
-              <a class="level-item" aria-label="like">
-                <span class="icon is-small">
-                  <i class="fas fa-heart" aria-hidden="true" />
-                </span>
-              </a>
-            </div>
-          </nav>
         </div>
-      </article>
-    </nuxt-link>
+        <div class="content">
+          <p>
+            {{ article.text }}
+          </p>
+          <BlTagList v-if="article.tags.length">
+            <BlTag v-for="tag in article.tags" :key="tag.id">
+              {{ tag.label }}
+            </BlTag>
+          </BlTagList>
+          <br>
+          <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+        </div>
+      </template>
+    </BlCard>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import BlCard from '~/components/atoms/bl-card';
+import BlTagList from '~/components/atoms/bl-tag_list';
+import BlTag from '~/components/atoms/bl-tag';
 
 export default {
+  components: {
+    BlCard,
+    BlTagList,
+    BlTag
+  },
   computed: {
     ...mapGetters(['articles'])
   },
@@ -59,6 +59,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>

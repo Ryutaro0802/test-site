@@ -2,11 +2,9 @@
   <nav class="navbar">
     <div class="container">
       <div class="navbar-brand">
-        <nuxt-link to="/" class="navbar-item">
-          <h1 class="title is-1">
-            Test Site
-          </h1>
-        </nuxt-link>
+        <BlLogo>
+          memo.
+        </BlLogo>
       </div>
       <div id="navbarMenu" class="navbar-menu">
         <div class="navbar-end">
@@ -26,7 +24,13 @@
 </template>
 
 <script>
+import BlLogo from '~/components/atoms/bl-logo';
+
 export default {
+  name: 'BlNavBar',
+  components: {
+    BlLogo
+  },
   props: ['user']
 };
 </script>
