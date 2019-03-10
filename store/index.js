@@ -80,6 +80,9 @@ const createStore = () => {
           label
         });
       }),
+      DELETE_TAG: firebaseAction((ctx, { id }) => {
+        tagsCollection.doc(id).delete();
+      }),
       callAuth() {
         firebase
           .auth()

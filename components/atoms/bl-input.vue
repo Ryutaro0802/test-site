@@ -99,7 +99,11 @@ export default {
       return 0;
     }
   },
-  // watchは必要だったら追加
+  watch: {
+    value(value) {
+      this.newValue = value;
+    }
+  },
   methods: {
     togglePasswordVisibility() {
       this.isPasswordVisible = !this.isPasswordVisible;
