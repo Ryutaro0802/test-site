@@ -3,67 +3,69 @@
     <h1 class="title is-3">
       記事を書く
     </h1>
-    <div v-if="!user">
-      <a class="button" @click="callAuth">SignIn</a>
-    </div>
-    <template v-else>
-      <form @submit.prevent="addPost">
-        <div class="field">
-          <label class="label">Title</label>
-          <div class="control">
-            <input
-              v-model="title"
-              class="input"
-              type="text"
-              name="title"
-              required
-              placeholder="Title"
-              @input="titleInput"
-            >
-          </div>
+    <form @submit.prevent="addPost">
+      <div class="field">
+        <label class="label">タイトル</label>
+        <div class="control">
+          <BlInput v-model="title" placeholder="タイトル" />
         </div>
-
-        <div class="field">
-          <label class="label">Text</label>
-          <div class="control">
-            <textarea
-              v-model="text"
-              class="textarea"
-              name="text"
-              required
-              placeholder="Text"
-              @input="textInput"
-            />
-          </div>
+      </div>
+      <div class="field">
+        <label class="label">テキスト</label>
+        <div class="control">
+          <BlInput v-model="text" placeholder="テキスト" type="textarea" />
         </div>
-
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link">
-              Submit
-            </button>
-          </div>
+      </div>
+      <div class="block">
+        <div class="control">
+          <BlCheckbox
+            v-for="tag in tags"
+            :key="tag.id"
+            v-model="tagIds"
+            :native-value="tag.id"
+          >
+            {{ tag.label }}
+          </BlCheckbox>
         </div>
-      </form>
-    </template>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link">
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
 // import dayjs from 'dayjs';
 import { mapGetters, mapActions } from 'vuex';
+import BlInput from '~/components/atoms/bl-input';
+import BlCheckbox from '~/components/atoms/bl-checkbox';
 
 export default {
   layout: 'column2',
   middleware: 'authenticated',
+  components: {
+    BlInput,
+    BlCheckbox
+  },
   data() {
     return {
       title: '',
-      text: ''
+      text: '',
+      tagIds: []
     };
   },
   computed: {
-    ...mapGetters(['user'])
+    ...mapGetters(['tags'])
+  },
+  async created() {
+    if (!this.tags.length) {
+      await this.$store.dispatch('INIT_TAGS');
+    }
   },
   methods: {
     addPost(e) {
@@ -71,23 +73,15 @@ export default {
       this.ADD_ARTICLE({
         title: this.title,
         text: this.text,
-        tags: [],
+        tags: this.tagIds,
         createdAt: Date.now(),
         updatedAt: Date.now()
       });
       this.title = '';
       this.text = '';
-    },
-    titleInput() {
-      this.title = event.target.value;
-    },
-    textInput() {
-      this.text = event.target.value;
+      this.tagIds = [];
     },
     ...mapActions(['callAuth', 'ADD_ARTICLE'])
   }
 };
 </script>
-
-<style>
-</style>
