@@ -4,18 +4,20 @@
       <h1 class="title is-1">
         {{ article.title }}
       </h1>
-      <p>
-        {{ article.text }}
-      </p>
+      <div v-html="markDownToHtml" />
     </template>
   </div>
 </template>
 
 <script>
+import marked from 'marked';
 import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   computed: {
+    markDownToHtml() {
+      return marked(this.article.text);
+    },
     ...mapGetters(['articles', 'article'])
   },
   async created() {
@@ -29,6 +31,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>

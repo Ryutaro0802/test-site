@@ -13,7 +13,7 @@
       <div class="field">
         <label class="label">テキスト</label>
         <div class="control">
-          <BlInput v-model="text" placeholder="テキスト" type="textarea" />
+          <BlMarkdownPreview v-model="text" />
         </div>
       </div>
       <div class="block">
@@ -44,13 +44,15 @@
 import { mapGetters, mapActions } from 'vuex';
 import BlInput from '~/components/atoms/bl-input';
 import BlCheckbox from '~/components/atoms/bl-checkbox';
+import BlMarkdownPreview from '~/components/molecules/bl-markdown_preview/';
 
 export default {
   layout: 'column2',
   middleware: 'authenticated',
   components: {
     BlInput,
-    BlCheckbox
+    BlCheckbox,
+    BlMarkdownPreview
   },
   data() {
     return {
