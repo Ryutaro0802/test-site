@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" :class="customClass">
     <div v-if="$slots.cardImage" class="card-image">
       <figure class="image is-4by3">
         <slot name="cardImage" />
@@ -13,6 +13,12 @@
 
 <script>
 export default {
-  name: 'BlCard'
+  name: 'BlCard',
+  props: {
+    customClass: {
+      type: String,
+      default: ''
+    }
+  }
 };
 </script>
