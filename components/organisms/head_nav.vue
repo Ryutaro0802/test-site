@@ -33,7 +33,7 @@
 
 <script>
 export default {
-  props: ['user']
+  name: 'BlHeadNav'
 };
 </script>
 

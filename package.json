@@ -19,6 +19,7 @@
     "cross-env": "^5.2.0",
     "dayjs": "^1.8.8",
     "firebase": "^5.8.4",
+    "marked": "^0.6.1",
     "nuxt": "^2.4.0",
     "vue": "^2.6.7",
     "vuexfire": "^3.0.0-alpha.14"
