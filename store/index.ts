@@ -13,6 +13,7 @@ const tagsCollection = firestore.collection('tags');
 
 Vue.use(Vuex);
 
+
 const createStore = () => {
   return new Vuex.Store({
     state: () => ({
@@ -50,7 +51,7 @@ const createStore = () => {
         bindFirebaseRef('articles', articlesCollection);
       }),
       ADD_ARTICLE: firebaseAction(
-        (ctx, { title, text, tags, createdAt, updatedAt }) => {
+        ({ title, text, tags, createdAt, updatedAt }) => {
           articlesCollection.add({
             title,
             text,
@@ -60,10 +61,10 @@ const createStore = () => {
           });
         }
       ),
-      DELETE_ARTICLE: firebaseAction((ctx, { id }) => {
+      DELETE_ARTICLE: firebaseAction(({ id }) => {
         articlesCollection.doc(id).delete();
       }),
-      EDIT_ARTICLE: firebaseAction((ctx, payload) => {
+      EDIT_ARTICLE: firebaseAction((payload) => {
         articlesCollection.doc(payload.id).set({
           title: payload.article.title,
           text: payload.article.text,
@@ -75,12 +76,12 @@ const createStore = () => {
       INIT_TAGS: firebaseAction(({ bindFirebaseRef }) => {
         bindFirebaseRef('tags', tagsCollection);
       }),
-      ADD_TAG: firebaseAction((ctx, { label }) => {
+      ADD_TAG: firebaseAction(({ label }) => {
         tagsCollection.add({
           label
         });
       }),
-      DELETE_TAG: firebaseAction((ctx, { id }) => {
+      DELETE_TAG: firebaseAction(({ id }) => {
         tagsCollection.doc(id).delete();
       }),
       callAuth() {

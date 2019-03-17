@@ -90,4 +90,4 @@ hosting*
 .envrc
 
 # firebase env
-firebase-env.js
+firebase-env.ts
