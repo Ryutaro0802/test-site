@@ -8,14 +8,14 @@
     <a
       class="tag is-delete"
       role="button"
-      :tabindex="tabstop ? 0 :false"
+      :tabindex="tabstop ? 0 : false"
       :disabled="disabled"
-      :class="[size, { 'is-rounded' : rounded }]"
+      :class="[size, { 'is-rounded': rounded }]"
       @click="close()"
       @keyup.delete.prevent="close()"
     />
   </div>
-  <span v-else class="tag" :class="[type, size, {'is-rounded': rounded}]">
+  <span v-else class="tag" :class="[type, size, { 'is-rounded': rounded }]">
     <span :class="{ 'has-ellipsis': ellipsis }">
       <slot />
     </span>

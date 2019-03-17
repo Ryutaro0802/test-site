@@ -1,11 +1,7 @@
 <template>
   <div class="columns">
     <div class="column">
-      <BlInput
-        v-model="markdown"
-        type="textarea"
-        @input="markdownInput"
-      />
+      <BlInput v-model="markdown" type="textarea" @input="markdownInput" />
     </div>
     <div class="column" v-html="preview" />
   </div>

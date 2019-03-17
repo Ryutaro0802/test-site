@@ -13,7 +13,7 @@
       @input="onInput"
       @blur="onBlur"
       @focus="onFocus"
-    >
+    />
     <textarea
       v-else
       ref="textarea"
@@ -26,7 +26,11 @@
       @blur="onBlur"
       @focus="onFocus"
     />
-    <small v-if="maxlength && hasCounter && type !== 'number'" class="help counter" :class="{ 'is-invisible': !isFocused }">
+    <small
+      v-if="maxlength && hasCounter && type !== 'number'"
+      class="help counter"
+      :class="{ 'is-invisible': !isFocused }"
+    >
       {{ valueLength }} / {{ maxLength }}
     </small>
   </div>
