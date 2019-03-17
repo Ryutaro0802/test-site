@@ -20,17 +20,11 @@
               {{ article.title }}
             </nuxt-link>
           </th>
-          <td>
-            {{ article.text }}
-          </td>
-          <td>
-            {{ article.createdAt }}
-          </td>
+          <td>{{ article.text }}</td>
+          <td>{{ article.createdAt }}</td>
           <td>
             <a href="#" @click.prevent="deleteArticle(article.id)">
-              <i class="material-icons">
-                delete
-              </i>
+              <BlIconDelete />
             </a>
           </td>
         </tr>
@@ -41,10 +35,14 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import BlIconDelete from '~/components/atoms/bl-icon_delete';
 
 export default {
   layout: 'column2',
   middleware: 'authenticated',
+  components: {
+    BlIconDelete
+  },
   computed: {
     ...mapGetters(['articles'])
   },
