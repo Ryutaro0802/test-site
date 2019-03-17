@@ -15,14 +15,20 @@
             name="title"
             required
             placeholder="Title"
-          >
+          />
         </div>
       </div>
 
       <div class="field">
         <label class="label">Text</label>
         <div class="control">
-          <textarea v-model="articleText" class="textarea" name="text" required placeholder="Text" />
+          <textarea
+            v-model="articleText"
+            class="textarea"
+            name="text"
+            required
+            placeholder="Text"
+          />
         </div>
       </div>
 

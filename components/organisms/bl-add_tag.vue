@@ -1,7 +1,12 @@
 <template>
   <div>
     <BlTagList>
-      <BlTag v-for="tag in tags" :key="tag.id" closable @close="tagDelete({ id: tag.id })">
+      <BlTag
+        v-for="tag in tags"
+        :key="tag.id"
+        closable
+        @close="tagDelete({ id: tag.id })"
+      >
         {{ tag.label }}
       </BlTag>
     </BlTagList>

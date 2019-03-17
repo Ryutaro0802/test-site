@@ -20,7 +20,7 @@
               required
               placeholder="Title"
               @input="titleInput"
-            >
+            />
           </div>
         </div>
 
@@ -64,5 +64,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

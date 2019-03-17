@@ -1,7 +1,12 @@
 <template>
   <aside class="menu is-hidden-mobile">
     <ul class="menu-list">
-      <SideNavItem v-for="(listItem, index) in listItems" :key="index" :list-item="listItem" :path="path">
+      <SideNavItem
+        v-for="(listItem, index) in listItems"
+        :key="index"
+        :list-item="listItem"
+        :path="path"
+      >
         {{ listItem.label }}
       </SideNavItem>
     </ul>
