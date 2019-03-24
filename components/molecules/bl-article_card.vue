@@ -2,7 +2,7 @@
   <div>
     <BlIndexCard :link-to="`/articles/${article.id}`" class="index-card">
       <template v-slot:image>
-        <img src="https://dummyimage.com/328x174/000/fff" alt="" />
+        <img src="https://dummyimage.com/328x174/474747/474747" alt="" />
       </template>
       <template v-slot:contents>
         <p class="article-title">
