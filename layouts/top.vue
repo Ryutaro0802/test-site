@@ -2,7 +2,14 @@
   <div>
     <BlNavbar :user="user" />
     <div class="container">
-      <nuxt />
+      <div class="columns">
+        <div class="column is-9">
+          <nuxt />
+        </div>
+        <div class="column is-3 ">
+          <BlSideNav />
+        </div>
+      </div>
     </div>
     <BlFooter />
   </div>
@@ -10,12 +17,14 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import BlSideNav from '~/components/organisms/bl-side_nav_user';
 import BlNavbar from '~/components/organisms/bl-navbar';
 import BlFooter from '~/components/organisms/bl-footer';
 
 export default {
   components: {
     BlNavbar,
+    BlSideNav,
     BlFooter
   },
   computed: {
