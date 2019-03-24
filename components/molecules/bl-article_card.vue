@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BlIndexCard :link-to="`/articles/${article.id}`">
+    <BlIndexCard :link-to="`/articles/${article.id}`" class="index-card">
       <template v-slot:image>
         <img src="https://dummyimage.com/328x174/000/fff" alt="" />
       </template>
@@ -16,6 +16,8 @@
             {{ tag.label }}
           </BlTag>
         </BlTagList>
+      </template>
+      <template v-slot:sub>
         <p class="article-sub-text">
           {{ article.createdAt }}
         </p>
@@ -65,18 +67,19 @@ export default {
   },
   created() {
     if (this.article.tags.length) {
-      const newTags = this.article.tags.map(articleTag => {
-        return this.tags.find(tag => {
-          return tag.id === articleTag;
-        });
-      });
+      const newTags = this.article.tags.map(articleTag =>
+        this.tags.find(tag => tag.id === articleTag)
+      );
       this.article.tags = newTags;
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
+.index-card {
+  height: 100%;
+}
 .article-title {
   font-size: 26px;
   font-weight: bold;

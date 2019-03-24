@@ -28,6 +28,9 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  max-width: 1032px;
+}
 @media screen and (max-width: 1087px) {
   .container {
     padding: 0.75em;

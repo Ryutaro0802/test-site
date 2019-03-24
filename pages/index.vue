@@ -3,12 +3,17 @@
     <!-- <BlTwitterButton /> -->
     <!-- <BlIconRss /> -->
     <div class="columns is-multiline">
-      <div v-for="article in articles" :key="article.id" class="column">
+      <div
+        v-for="article in articles"
+        :key="article.id"
+        class="column is-one-third"
+      >
         <!-- TODO loadedを使った実装に修正する -->
         <BlArticleCard
           v-if="articles.length && tags.length"
           :article="article"
           :tags="tags"
+          class="article-card"
         />
       </div>
     </div>
@@ -46,7 +51,7 @@ export default {
 </script>
 
 <style scoped>
-.column * {
+.column .article-card {
   height: 100%;
 }
 </style>

@@ -7,6 +7,9 @@
       <div v-if="$slots.contents" class="contents">
         <slot name="contents" />
       </div>
+      <div v-if="$slots.sub" class="sub">
+        <slot name="sub" />
+      </div>
     </nuxt-link>
   </div>
 </template>
@@ -24,10 +27,13 @@ export default {
 
 <style scoped>
 .anchor {
-  display: block;
+  display: flex;
+  flex-direction: column;
   color: inherit;
+  height: 100%;
 }
 .contents {
   padding-top: 15px;
+  flex-grow: 1;
 }
 </style>
