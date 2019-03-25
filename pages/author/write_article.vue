@@ -70,6 +70,9 @@ export default {
     }
   },
   methods: {
+    setTags(value, a) {
+      console.log(value, a);
+    },
     addPost(e) {
       e.preventDefault();
       this.ADD_ARTICLE({

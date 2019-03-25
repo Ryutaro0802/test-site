@@ -1,25 +1,23 @@
 <template>
   <div>
-    <BlNavbar :user="user" />
     <div class="container">
+      <BlLogo>
+        memo.
+      </BlLogo>
+      <BlNavbar />
       <nuxt />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 import BlNavbar from '~/components/organisms/bl-navbar';
+import BlLogo from '~/components/atoms/bl-logo';
 
 export default {
   components: {
-    BlNavbar
-  },
-  computed: {
-    ...mapGetters(['user'])
-  },
-  methods: {
-    ...mapActions(['signOut'])
+    BlNavbar,
+    BlLogo
   }
 };
 </script>

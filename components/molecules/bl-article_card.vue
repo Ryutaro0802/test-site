@@ -64,15 +64,16 @@ export default {
       // markupを置換してタグを削除
       return markupString.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '');
     }
-  },
-  created() {
-    if (this.article.tags.length) {
-      const newTags = this.article.tags.map(articleTag =>
-        this.tags.find(tag => tag.id === articleTag)
-      );
-      this.article.tags = newTags;
-    }
   }
+  // created() {
+  //   if (this.article.tags.length) {
+  //     const newTags = this.article.tags.map(articleTag => {
+  //       console.log(articleTag);
+  //       return this.tags.find(tag => tag.id === articleTag);
+  //     });
+  //     this.article.tags = newTags;
+  //   }
+  // }
 };
 </script>
 
@@ -85,6 +86,10 @@ export default {
   font-weight: bold;
 }
 .article-text {
+  color: #616161;
+  font-size: 18px;
+}
+.article-sub-text {
   color: #8c8989;
 }
 </style>

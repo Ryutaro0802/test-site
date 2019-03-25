@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link to="/" class="navbar-item">
+  <nuxt-link to="/">
     <h1 class="title is-1">
       <slot />
     </h1>

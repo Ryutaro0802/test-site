@@ -1,45 +1,47 @@
 <template>
-  <nav class="navbar">
-    <div class="container">
-      <div class="navbar-brand">
-        <BlLogo>
-          memo.
-        </BlLogo>
-      </div>
-      <div id="navbarMenu" class="navbar-menu">
-        <div class="navbar-end">
-          <nuxt-link class="navbar-item is-active" to="/">
+  <div class="navigation">
+    <div class="left">
+      <ul class="anchors">
+        <li>
+          <nuxt-link to="/" class="anchor">
             Home
           </nuxt-link>
-          <nuxt-link class="navbar-item" to="/about">
+        </li>
+        <li>
+          <nuxt-link to="/about" class="anchor">
             About
           </nuxt-link>
-          <a v-if="user" href="#" class="navbar-item" @click.prevent="signOut">
-            Logout
-          </a>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
-  </nav>
+    <div class="right" />
+  </div>
 </template>
 
 <script>
-import BlLogo from '~/components/atoms/bl-logo';
-
 export default {
-  name: 'BlNavBar',
-  components: {
-    BlLogo
-  },
-  props: ['user']
+  name: 'BlNavBar'
 };
 </script>
 
 <style scoped>
-.container {
-  max-width: 1032px;
-}
-.navbar {
+.navigation {
+  display: flex;
+  border-bottom: 1px solid #d8d8d8;
   margin-bottom: 20px;
+}
+.left {
+  flex-grow: 1;
+}
+.anchors {
+  display: flex;
+}
+.anchors li {
+  margin-right: 20px;
+}
+.anchor {
+  color: inherit;
+  padding: 15px 0;
+  display: block;
 }
 </style>

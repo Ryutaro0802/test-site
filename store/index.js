@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import firebase from '~/plugins/firebase';
 import { firebaseMutations, firebaseAction } from 'vuexfire';
+
 const firestore = firebase.firestore();
 const articlesCollection = firestore.collection('articles');
 const tagsCollection = firestore.collection('tags');

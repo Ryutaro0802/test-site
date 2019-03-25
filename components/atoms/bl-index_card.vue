@@ -33,7 +33,11 @@ export default {
   height: 100%;
 }
 .contents {
-  padding-top: 15px;
+  padding: 15px 0 25px;
   flex-grow: 1;
+}
+.sub {
+  font-size: 14px;
+  text-align: right;
 }
 </style>
