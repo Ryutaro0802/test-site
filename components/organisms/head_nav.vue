@@ -37,7 +37,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.container {
+  max-width: 1032px;
+}
 .navbar {
   margin-bottom: 20px;
 }

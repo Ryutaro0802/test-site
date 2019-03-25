@@ -75,7 +75,7 @@ export default {
       this.ADD_ARTICLE({
         title: this.title,
         text: this.text,
-        tags: this.tagIds,
+        tagIds: this.tagIds,
         createdAt: Date.now(),
         updatedAt: Date.now()
       });

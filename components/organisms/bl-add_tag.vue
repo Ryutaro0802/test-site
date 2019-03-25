@@ -46,7 +46,6 @@ export default {
       this.newTag = '';
     },
     tagDelete({ id }) {
-      console.log(id);
       this.DELETE_TAG({ id });
     },
     ...mapActions(['ADD_TAG', 'DELETE_TAG'])

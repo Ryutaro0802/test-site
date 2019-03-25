@@ -11,7 +11,8 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "storybook": "start-storybook"
+    "storybook": "start-storybook",
+    "fix": "yarn eslint --fix ./pages/**/*.vue ./components/**/*.vue"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
