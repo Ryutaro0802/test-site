@@ -70,15 +70,12 @@ export default {
     }
   },
   methods: {
-    setTags(value, a) {
-      console.log(value, a);
-    },
     addPost(e) {
       e.preventDefault();
       this.ADD_ARTICLE({
         title: this.title,
         text: this.text,
-        tags: this.tagIds,
+        tagIds: this.tagIds,
         createdAt: Date.now(),
         updatedAt: Date.now()
       });

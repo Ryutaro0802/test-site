@@ -2,19 +2,13 @@
   <div>
     <!-- <BlTwitterButton /> -->
     <!-- <BlIconRss /> -->
-    <div class="columns is-multiline">
+    <div v-if="isLoaded" class="columns is-multiline">
       <div
         v-for="article in articles"
         :key="article.id"
         class="column is-one-third"
       >
-        <!-- TODO loadedを使った実装に修正する -->
-        <BlArticleCard
-          v-if="articles.length && tags.length"
-          :article="article"
-          :tags="tags"
-          class="article-card"
-        />
+        <BlArticleCard :article="article" class="article-card" />
       </div>
     </div>
   </div>
@@ -34,14 +28,18 @@ export default {
   computed: {
     ...mapGetters(['articles', 'tags', 'isLoaded'])
   },
-  async created() {
-    // TODO Pomise.allに書き直す
-    if (!this.articles.length) {
-      await this.$store.dispatch('INIT_ARTICLES');
-    }
-    if (!this.tags.length) {
-      await this.$store.dispatch('INIT_TAGS');
-    }
+  async mounted() {
+    console.log('beforeArticles', this.articles.length);
+    console.log('beforeTagas', this.tags.length);
+    await Promise.all([
+      this.articles.length
+        ? Promise.resolve()
+        : this.$store.dispatch('INIT_ARTICLES'),
+      this.tags.length ? Promise.resolve() : this.$store.dispatch('INIT_TAGS')
+    ]);
+    // await this.$nextTick();
+    console.log('aftetrArticles', this.articles.length);
+    console.log('afterTags', this.tags.length);
     this.loadComplete();
   },
   methods: {

@@ -25,13 +25,19 @@ const createStore = () => {
     }),
     getters: {
       user: state => state.user,
-      articles: state => state.articles,
-      tags: state => state.tags,
-      article: state => {
-        return state.articleId
-          ? state.articles.find(article => article.id === state.articleId)
-          : null;
+      articles: state => {
+        return state.articles.map(article => {
+          article.tags = state.tags.filter(tag => {
+            return article.tagIds.includes(tag.id);
+          });
+          return article;
+        });
       },
+      tags: state => state.tags,
+      article: state =>
+        state.articleId
+          ? state.articles.find(article => article.id === state.articleId)
+          : null,
       isLoaded: state => state.isLoaded
     },
     mutations: {
@@ -51,11 +57,11 @@ const createStore = () => {
         bindFirebaseRef('articles', articlesCollection);
       }),
       ADD_ARTICLE: firebaseAction(
-        (ctx, { title, text, tags, createdAt, updatedAt }) => {
+        (ctx, { title, text, tagIds, createdAt, updatedAt }) => {
           articlesCollection.add({
             title,
             text,
-            tags,
+            tagIds,
             createdAt,
             updatedAt
           });

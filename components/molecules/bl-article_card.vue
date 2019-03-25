@@ -11,7 +11,7 @@
         <p class="article-text">
           {{ markdownToText }}
         </p>
-        <BlTagList>
+        <BlTagList v-if="article.tags.length" class="article-tag-list">
           <BlTag v-for="tag in article.tags" :key="tag.id">
             {{ tag.label }}
           </BlTag>
@@ -43,16 +43,7 @@ export default {
     article: {
       type: Object,
       default: () => {}
-    },
-    tags: {
-      type: Array,
-      default: () => []
     }
-  },
-  data() {
-    return {
-      formattedArticle: this.article
-    };
   },
   computed: {
     markdownToText() {
@@ -65,15 +56,6 @@ export default {
       return markupString.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '');
     }
   }
-  // created() {
-  //   if (this.article.tags.length) {
-  //     const newTags = this.article.tags.map(articleTag => {
-  //       console.log(articleTag);
-  //       return this.tags.find(tag => tag.id === articleTag);
-  //     });
-  //     this.article.tags = newTags;
-  //   }
-  // }
 };
 </script>
 
@@ -88,6 +70,9 @@ export default {
 .article-text {
   color: #616161;
   font-size: 18px;
+}
+.article-tag-list {
+  margin-top: 15px;
 }
 .article-sub-text {
   color: #8c8989;
