@@ -21,29 +21,29 @@ import { mapGetters, mapActions } from 'vuex';
 import BlArticleCard from '~/components/molecules/bl-article_card';
 
 export default {
-  // layout: 'top',
   components: {
     BlArticleCard
   },
   computed: {
-    ...mapGetters(['articles', 'tags', 'isLoaded'])
+    ...mapGetters({
+      articles: 'articles/articles',
+      tags: 'tags/tags',
+      isLoaded: 'isLoaded'
+    })
   },
   async mounted() {
-    console.log('beforeArticles', this.articles.length);
-    console.log('beforeTagas', this.tags.length);
     await Promise.all([
-      this.articles.length
-        ? Promise.resolve()
-        : this.$store.dispatch('INIT_ARTICLES'),
-      this.tags.length ? Promise.resolve() : this.$store.dispatch('INIT_TAGS')
+      this.articles.length ? Promise.resolve() : this.INIT_ARTICLES(),
+      this.tags.length ? Promise.resolve() : this.INIT_TAGS()
     ]);
-    // await this.$nextTick();
-    console.log('aftetrArticles', this.articles.length);
-    console.log('afterTags', this.tags.length);
     this.loadComplete();
   },
   methods: {
-    ...mapActions(['loadComplete'])
+    ...mapActions({
+      INIT_ARTICLES: 'articles/INIT_ARTICLES',
+      INIT_TAGS: 'tags/INIT_TAGS',
+      loadComplete: 'loadComplete'
+    })
   }
 };
 </script>
