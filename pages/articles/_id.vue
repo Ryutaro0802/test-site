@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if="article">
+    <template v-if="isLoaded">
       <h1 class="title is-1">
         {{ article.title }}
       </h1>
@@ -11,23 +11,32 @@
 
 <script>
 import marked from 'marked';
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   computed: {
     markDownToHtml() {
       return marked(this.article.text);
     },
-    ...mapGetters(['articles', 'article'])
+    ...mapGetters({
+      articles: 'articles/articles',
+      article: 'articles/article',
+      isLoaded: 'isLoaded'
+    })
   },
-  async created() {
-    if (!this.articles.length) {
-      await this.$store.dispatch('INIT_ARTICLES');
+  async mounted() {
+    const articleId = this.$route.params.id;
+    const article = this.articles.find(article => article.id === articleId);
+    if (!article) {
+      await this.INIT_SINGLE_ARTICLE({ id: articleId });
     }
-    this.setArticleId({ id: this.$route.params.id });
+    this.loadComplete();
   },
   methods: {
-    ...mapMutations(['setArticleId'])
+    ...mapActions({
+      INIT_SINGLE_ARTICLE: 'articles/INIT_SINGLE_ARTICLE',
+      loadComplete: 'loadComplete'
+    })
   }
 };
 </script>

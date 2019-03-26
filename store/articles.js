@@ -5,8 +5,8 @@ const firestore = firebase.firestore();
 const articlesCollection = firestore.collection('articles');
 
 export const state = () => ({
-  articleId: null,
-  articles: []
+  articles: [],
+  article: {}
 });
 
 export const getters = {
@@ -17,15 +17,12 @@ export const getters = {
       return article;
     });
   },
-  article: state =>
-    state.articleId
-      ? state.articles.find(article => article.id === state.articleId)
-      : null
+  article: state => state.article
 };
 
 export const mutations = {
-  setArticleId(state, { id }) {
-    state.articleId = id;
+  saveArticle(state, { article }) {
+    state.article = article;
   }
 };
 
@@ -33,6 +30,11 @@ export const actions = {
   INIT_ARTICLES: firebaseAction(({ bindFirebaseRef }) => {
     bindFirebaseRef('articles', articlesCollection);
   }),
+  async INIT_SINGLE_ARTICLE({ commit }, { id }) {
+    // TODO articleの値をObjectが帰ってくるように修正
+    const article = await articlesCollection.doc(id);
+    commit('saveArticle', { article });
+  },
   ADD_ARTICLE: firebaseAction(
     (ctx, { title, text, tagIds, createdAt, updatedAt }) => {
       articlesCollection.add({
