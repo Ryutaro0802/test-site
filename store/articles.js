@@ -10,11 +10,10 @@ export const state = () => ({
 });
 
 export const getters = {
-  articles: state => {
+  articles: (state, commit, rootState) => {
+    const tags = rootState.tags.tags;
     return state.articles.map(article => {
-      // article.tag = state.tags.filter(tag => {
-      //   return article.tagIds.includes(tag.id);
-      // });
+      article.tags = tags.filter(tag => article.tagIds.includes(tag.id));
       return article;
     });
   },

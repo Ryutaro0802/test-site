@@ -11,11 +11,11 @@
         <p class="article-text">
           {{ markdownToText }}
         </p>
-        <!-- <BlTagList v-if="article.tags.length" class="article-tag-list">
+        <BlTagList v-if="article.tags.length" class="article-tag-list">
           <BlTag v-for="tag in article.tags" :key="tag.id">
             {{ tag.label }}
           </BlTag>
-        </BlTagList> -->
+        </BlTagList>
       </template>
       <template v-slot:sub>
         <p class="article-sub-text">
@@ -28,15 +28,15 @@
 
 <script>
 import marked from 'marked';
-// import BlTag from '~/components/atoms/bl-tag';
-// import BlTagList from '~/components/atoms/bl-tag_list';
+import BlTag from '~/components/atoms/bl-tag';
+import BlTagList from '~/components/atoms/bl-tag_list';
 import BlIndexCard from '~/components/atoms/bl-index_card';
 
 export default {
   name: 'BlArticleCard',
   components: {
-    // BlTag,
-    // BlTagList,
+    BlTag,
+    BlTagList,
     BlIndexCard
   },
   props: {
