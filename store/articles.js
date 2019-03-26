@@ -6,7 +6,7 @@ const articlesCollection = firestore.collection('articles');
 
 export const state = () => ({
   articles: [],
-  article: {}
+  article: null
 });
 
 export const getters = {
