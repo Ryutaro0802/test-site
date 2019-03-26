@@ -5,25 +5,14 @@
 </template>
 
 <script>
-const articles = [
-  {
-    id: 0,
-    title: 'title'
-  },
-  {
-    id: 1,
-    title: 'title'
-  },
-  {
-    id: 2,
-    title: 'title'
-  }
-];
+import { mapActions } from 'vuex';
+
 export default {
-  data() {
-    return {
-      articles
-    };
+  created() {
+    this.loadComplete();
+  },
+  methods: {
+    ...mapActions(['loadComplete'])
   }
 };
 </script>
