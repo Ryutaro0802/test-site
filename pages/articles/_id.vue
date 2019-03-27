@@ -28,6 +28,7 @@ export default {
     const articleId = this.$route.params.id;
     const article = this.articles.find(article => article.id === articleId);
     if (!article) {
+      console.log('call INIT_SINGLE_ARTICLE');
       await this.INIT_SINGLE_ARTICLE({ id: articleId });
     }
     this.loadComplete();
