@@ -4,6 +4,7 @@
       <h1 class="title is-1">
         {{ article.title }}
       </h1>
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <div v-html="markDownToHtml" />
     </template>
   </div>

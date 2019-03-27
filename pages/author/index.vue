@@ -13,25 +13,32 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 import auth from '~/plugins/auth';
 
 export default {
   layout: 'column2',
   computed: {
-    ...mapGetters(['user'])
+    ...mapGetters({
+      user: 'user'
+    })
   },
   async created() {
     if (this.user) {
       return;
     }
     const user = await auth();
-    this.$store.commit('setUser', { user });
+    this.setUser({ user });
+    this.loadComplete();
   },
   methods: {
-    ...mapActions(['callAuth'])
+    ...mapActions({
+      callAuth: 'callAuth',
+      loadComplete: 'loadComplete'
+    }),
+    ...mapMutations({
+      setUser: 'setUser'
+    })
   }
 };
 </script>
-
-<style></style>
