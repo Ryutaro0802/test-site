@@ -31,19 +31,20 @@ export const actions = {
     bindFirebaseRef('articles', articlesCollection);
   }),
   INIT_SINGLE_ARTICLE({ commit }, { id }) {
-    articlesCollection
-      .doc(id)
-      .get()
-      .then(doc => {
-        console.log(doc.exists);
-        if (doc.exists) {
-          console.log(doc.data());
-        } else {
-          console.log('No such document');
-        }
-      });
-    // const article = await articlesCollection.doc(id).get().data();
-    // commit('saveArticle', { article });
+    return new Promise(async (resolve, reject) => {
+      await articlesCollection
+        .doc(id)
+        .get()
+        .then(doc => {
+          if (doc.exists) {
+            const article = doc.data();
+            commit('saveArticle', { article });
+            resolve();
+          } else {
+            throw console.error('No such document');
+          }
+        });
+    });
   },
   ADD_ARTICLE: firebaseAction(
     (ctx, { title, text, tagIds, createdAt, updatedAt }) => {

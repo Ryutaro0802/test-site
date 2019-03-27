@@ -11,7 +11,7 @@
 
 <script>
 import marked from 'marked';
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
   computed: {
@@ -24,11 +24,11 @@ export default {
       isLoaded: 'isLoaded'
     })
   },
-  async mounted() {
+  async created() {
     const articleId = this.$route.params.id;
     const article = this.articles.find(article => article.id === articleId);
+    this.saveArticle({ article });
     if (!article) {
-      console.log('call INIT_SINGLE_ARTICLE');
       await this.INIT_SINGLE_ARTICLE({ id: articleId });
     }
     this.loadComplete();
@@ -37,6 +37,9 @@ export default {
     ...mapActions({
       INIT_SINGLE_ARTICLE: 'articles/INIT_SINGLE_ARTICLE',
       loadComplete: 'loadComplete'
+    }),
+    ...mapMutations({
+      saveArticle: 'articles/saveArticle'
     })
   }
 };
