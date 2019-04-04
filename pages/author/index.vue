@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 import auth from '~/plugins/auth';
 
 export default {
@@ -24,22 +24,21 @@ export default {
     })
   },
   async created() {
-    if (this.user) {
-      return;
+    let user = null;
+    if (!this.user) {
+      user = await auth();
     }
-    const user = await auth();
-    // this.setUser({ user });
-    this.$store.commit('setUser', { user });
-    this.loadComplete();
+    this.setUser({ user });
+    // this.loadComplete();
   },
   methods: {
     ...mapActions({
       callAuth: 'callAuth',
       loadComplete: 'loadComplete'
+    }),
+    ...mapMutations({
+      setUser: 'setUser'
     })
-    // ...mapMutations({
-    // setUser: 'setUser'
-    // })
   }
 };
 </script>
