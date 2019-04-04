@@ -28,9 +28,18 @@
 export default {
   name: 'BlCheckbox',
   props: {
-    value: [String, Number, Boolean, Function, Object, Array, Symbol],
-    nativeValue: [String, Number, Boolean, Function, Object, Array, Symbol],
-    type: String,
+    value: {
+      default: false,
+      type: [String, Number, Boolean, Function, Object, Array, Symbol]
+    },
+    nativeValue: {
+      default: false,
+      type: [String, Number, Boolean, Function, Object, Array, Symbol]
+    },
+    type: {
+      default: '',
+      type: String
+    },
     disabled: Boolean,
     required: Boolean,
     name: String,

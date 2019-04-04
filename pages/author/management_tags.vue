@@ -18,15 +18,20 @@ export default {
     BlAddTag
   },
   computed: {
-    ...mapGetters(['tags'])
+    ...mapGetters({
+      tags: 'tags/tags'
+    })
   },
   async created() {
     if (!this.tags.length) {
-      await this.$store.dispatch('INIT_TAGS');
+      await this.INIT_TAGS();
     }
   },
   methods: {
-    ...mapActions(['ADD_TAG'])
+    ...mapActions({
+      ADD_TAG: 'tags/ADD_TAG',
+      INIT_TAGS: 'tags/INIT_TAGS'
+    })
   }
 };
 </script>

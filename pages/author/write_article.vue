@@ -62,11 +62,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['tags'])
+    ...mapGetters({
+      tags: 'tags/tags'
+    })
   },
   async created() {
     if (!this.tags.length) {
-      await this.$store.dispatch('INIT_TAGS');
+      await this.INIT_TAGS();
     }
   },
   methods: {
@@ -83,7 +85,10 @@ export default {
       this.text = '';
       this.tagIds = [];
     },
-    ...mapActions(['callAuth', 'ADD_ARTICLE'])
+    ...mapActions({
+      ADD_ARTICLE: 'articles/ADD_ARTICLE',
+      INIT_TAGS: 'tags/INIT_TAGS'
+    })
   }
 };
 </script>
