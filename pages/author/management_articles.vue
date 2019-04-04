@@ -44,19 +44,23 @@ export default {
     BlIconDelete
   },
   computed: {
-    ...mapGetters(['articles'])
+    ...mapGetters({
+      articles: 'articles/articles'
+    })
   },
   async created() {
     if (!this.articles.length) {
-      await this.$store.dispatch('INIT_ARTICLES');
+      await this.INIT_ARTICLES();
     }
   },
   methods: {
     deleteArticle(id) {
-      // this.$store.commit('deleteArticle', { id });
       this.DELETE_ARTICLE({ id });
     },
-    ...mapActions(['DELETE_ARTICLE'])
+    ...mapActions({
+      INIT_ARTICLES: 'articles/INIT_ARTICLES',
+      DELETE_ARTICLE: 'articles/DELETE_ARTICLE'
+    })
   }
 };
 </script>

@@ -1,7 +1,7 @@
 import { firebaseMutations } from 'vuexfire';
 import firebase from '~/plugins/firebase';
 
-// fixme stateにObjectを代入しようとするとstrict=trueの場合エラーがでるため暫定的にfalseに設定する
+// FIXME stateにObjectを代入しようとするとstrict=trueの場合エラーがでるため暫定的にfalseに設定する
 export const strict = false;
 
 export const state = () => ({
