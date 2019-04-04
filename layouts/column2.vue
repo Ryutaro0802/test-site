@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="!isLoaded">Loading..</div>
-    <template v-show="isLoaded">
+    <!-- <div v-if="!isLoaded">Loading..</div> -->
+    <template>
       <HeadNav />
       <div class="container">
         <div class="columns">
