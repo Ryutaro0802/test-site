@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   layout: 'column2',
@@ -58,6 +58,9 @@ export default {
   computed: {
     articleTitle: {
       get() {
+        if (!this.article) {
+          return '';
+        }
         return this.article.title;
       },
       set(title) {
@@ -66,16 +69,23 @@ export default {
     },
     articleText: {
       get() {
+        if (!this.article) {
+          return '';
+        }
         return this.article.text;
       },
       set(text) {
         this.text = text;
       }
     },
-    ...mapGetters(['article'])
+    ...mapGetters({
+      article: 'articles/article'
+    })
   },
-  created() {
-    this.setArticleId({ id: this.$route.params.id });
+  async created() {
+    const articleId = this.$route.params.id;
+    await this.INIT_SINGLE_ARTICLE({ id: articleId });
+    this.loadComplete();
   },
   methods: {
     editArticle() {
@@ -93,8 +103,11 @@ export default {
         }
       });
     },
-    ...mapMutations(['setArticleId']),
-    ...mapActions(['EDIT_ARTICLE'])
+    ...mapActions({
+      INIT_SINGLE_ARTICLE: 'articles/INIT_SINGLE_ARTICLE',
+      EDIT_ARTICLE: 'articles/EDIT_ARTICLE',
+      loadComplete: 'loadComplete'
+    })
   }
 };
 </script>
