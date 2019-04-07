@@ -35,7 +35,7 @@
       <div class="field is-grouped">
         <div class="control">
           <button class="button is-link">
-            Submit
+            送信
           </button>
         </div>
       </div>
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   layout: 'column2',
@@ -58,6 +58,9 @@ export default {
   computed: {
     articleTitle: {
       get() {
+        if (!this.article) {
+          return '';
+        }
         return this.article.title;
       },
       set(title) {
@@ -66,35 +69,43 @@ export default {
     },
     articleText: {
       get() {
+        if (!this.article) {
+          return '';
+        }
         return this.article.text;
       },
       set(text) {
+        console.log(text);
         this.text = text;
       }
     },
-    ...mapGetters(['article'])
+    ...mapGetters({
+      article: 'articles/article'
+    })
   },
-  created() {
-    this.setArticleId({ id: this.$route.params.id });
+  async created() {
+    const articleId = this.$route.params.id;
+    await this.INIT_SINGLE_ARTICLE({ id: articleId });
+    this.loadComplete();
   },
   methods: {
     editArticle() {
-      if (!this.title || !this.text) {
-        return;
-      }
       this.EDIT_ARTICLE({
         id: this.$route.params.id,
         article: {
-          title: this.title,
-          text: this.text,
-          tags: this.article.tags,
+          title: this.title || this.articleTitle,
+          text: this.text || this.articleText,
+          tagIds: this.article.tagIds,
           createdAt: this.article.createdAt,
           updatedAt: new Date()
         }
       });
     },
-    ...mapMutations(['setArticleId']),
-    ...mapActions(['EDIT_ARTICLE'])
+    ...mapActions({
+      INIT_SINGLE_ARTICLE: 'articles/INIT_SINGLE_ARTICLE',
+      EDIT_ARTICLE: 'articles/EDIT_ARTICLE',
+      loadComplete: 'loadComplete'
+    })
   }
 };
 </script>
