@@ -35,7 +35,7 @@
       <div class="field is-grouped">
         <div class="control">
           <button class="button is-link">
-            Submit
+            送信
           </button>
         </div>
       </div>
@@ -75,6 +75,7 @@ export default {
         return this.article.text;
       },
       set(text) {
+        console.log(text);
         this.text = text;
       }
     },
@@ -89,15 +90,12 @@ export default {
   },
   methods: {
     editArticle() {
-      if (!this.title || !this.text) {
-        return;
-      }
       this.EDIT_ARTICLE({
         id: this.$route.params.id,
         article: {
-          title: this.title,
-          text: this.text,
-          tags: this.article.tags,
+          title: this.title || this.articleTitle,
+          text: this.text || this.articleText,
+          tagIds: this.article.tagIds,
           createdAt: this.article.createdAt,
           updatedAt: new Date()
         }

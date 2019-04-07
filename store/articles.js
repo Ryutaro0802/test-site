@@ -64,7 +64,7 @@ export const actions = {
     articlesCollection.doc(payload.id).set({
       title: payload.article.title,
       text: payload.article.text,
-      tags: payload.article.tags,
+      tagIds: payload.article.tagIds,
       createdAt: payload.article.createdAt,
       updatedAt: payload.article.updatedAt
     });
