@@ -28,9 +28,9 @@
 
 <script>
 import marked from 'marked';
-import BlTag from '~/components/atoms/bl-tag';
-import BlTagList from '~/components/atoms/bl-tag_list';
-import BlIndexCard from '~/components/atoms/bl-index_card';
+import BlTag from '~/app/components/atoms/bl-tag';
+import BlTagList from '~/app/components/atoms/bl-tag_list';
+import BlIndexCard from '~/app/components/atoms/bl-index_card';
 
 export default {
   name: 'BlArticleCard',

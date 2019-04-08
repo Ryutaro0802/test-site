@@ -8,7 +8,7 @@
 </template>
 <script>
 import marked from 'marked';
-import BlInput from '~/components/atoms/bl-input';
+import BlInput from '~/app/components/atoms/bl-input';
 
 export default {
   components: {

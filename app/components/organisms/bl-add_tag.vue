@@ -16,9 +16,9 @@
   </div>
 </template>
 <script>
-import BlInput from '~/components/atoms/bl-input';
-import BlTagList from '~/components/atoms/bl-tag_list';
-import BlTag from '~/components/atoms/bl-tag';
+import BlInput from '~/app/components/atoms/bl-input';
+import BlTagList from '~/app/components/atoms/bl-tag_list';
+import BlTag from '~/app/components/atoms/bl-tag';
 import { mapActions } from 'vuex';
 export default {
   name: 'BlAddTWag',

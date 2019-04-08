@@ -17,9 +17,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import BlSideNav from '~/components/organisms/bl-side_nav_user';
-import BlNavbar from '~/components/organisms/bl-navbar';
-import BlFooter from '~/components/organisms/bl-footer';
+import BlSideNav from '~/app/components/organisms/bl-side_nav_user';
+import BlNavbar from '~/app/components/organisms/bl-navbar';
+import BlFooter from '~/app/components/organisms/bl-footer';
 
 export default {
   components: {
