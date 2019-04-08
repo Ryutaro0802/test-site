@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
@@ -75,7 +76,6 @@ export default {
         return this.article.text;
       },
       set(text) {
-        console.log(text);
         this.text = text;
       }
     },
@@ -97,7 +97,7 @@ export default {
           text: this.text || this.articleText,
           tagIds: this.article.tagIds,
           createdAt: this.article.createdAt,
-          updatedAt: new Date()
+          updatedAt: firebase.firestore.Timestamp.now()
         }
       });
     },
