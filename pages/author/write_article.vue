@@ -40,7 +40,7 @@
 </template>
 
 <script>
-// import dayjs from 'dayjs';
+import firebase from '~/plugins/firebase';
 import { mapGetters, mapActions } from 'vuex';
 import BlInput from '~/components/atoms/bl-input';
 import BlCheckbox from '~/components/atoms/bl-checkbox';
@@ -78,8 +78,8 @@ export default {
         title: this.title,
         text: this.text,
         tagIds: this.tagIds,
-        createdAt: Date.now(),
-        updatedAt: Date.now()
+        createdAt: firebase.firestore.Timestamp.now(),
+        updatedAt: firebase.firestore.Timestamp.now()
       });
       this.title = '';
       this.text = '';
