@@ -35,7 +35,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import BlIconDelete from '~/app/components/atoms/bl-icon_delete';
+import BlIconDelete from '~/components/atoms/bl-icon_delete';
 
 export default {
   layout: 'column2',

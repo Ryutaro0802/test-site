@@ -42,9 +42,9 @@
 <script>
 import firebase from '~/plugins/firebase';
 import { mapGetters, mapActions } from 'vuex';
-import BlInput from '~/app/components/atoms/bl-input';
-import BlCheckbox from '~/app/components/atoms/bl-checkbox';
-import BlMarkdownPreview from '~/app/components/molecules/bl-markdown_preview/';
+import BlInput from '~/components/atoms/bl-input';
+import BlCheckbox from '~/components/atoms/bl-checkbox';
+import BlMarkdownPreview from '~/components/molecules/bl-markdown_preview/';
 
 export default {
   layout: 'column2',

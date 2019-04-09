@@ -91,3 +91,6 @@ hosting*
 
 # firebase env
 firebase-env.js
+
+# Firebase
+.firebase

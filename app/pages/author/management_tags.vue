@@ -9,7 +9,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import BlAddTag from '~/app/components/organisms/bl-add_tag';
+import BlAddTag from '~/components/organisms/bl-add_tag';
 
 export default {
   layout: 'column2',

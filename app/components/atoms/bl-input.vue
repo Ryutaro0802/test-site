@@ -36,7 +36,7 @@
   </div>
 </template>
 <script>
-import FormElementMixin from '~/app/components/mixin/form_element_mixin';
+import FormElementMixin from '~/components/mixin/form_element_mixin';
 
 export default {
   name: 'BlInput',
