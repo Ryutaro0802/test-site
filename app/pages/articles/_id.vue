@@ -26,13 +26,6 @@ export default {
     })
   },
   async asyncData({ store, route, params }) {
-    if (
-      store.getters['articles/articles'].find(
-        article => article.id === route.params.id
-      )
-    ) {
-      return;
-    }
     await store.dispatch('articles/INIT_SINGLE_ARTICLE', { id: params.id });
     store.dispatch('loadComplete');
   }
