@@ -6,10 +6,15 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build:nuxt": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "build": "yarn clean;yarn build:nuxt;yarn copy # for Firebase",
+    "clean": "rm -rf {dist, .nuxt}",
+    "copy": "mkdir dist;cp -R functions dist/server;cp -R app/static/ dist/client;cp -R .nuxt dist/server;cp -R dist/server/.nuxt/dist dist/client/assets",
+    "format": "prettier './app/**/*.{js,vue}' --write",
+    "deploy": "firebase deploy",
     "precommit": "npm run lint",
     "storybook": "start-storybook",
     "fix": "yarn eslint --fix ./pages/**/*.vue ./components/**/*.vue"
@@ -20,11 +25,12 @@
     "@nuxtjs/pwa": "^3.0.0-beta.13",
     "cross-env": "^5.2.0",
     "dayjs": "^1.8.8",
-    "firebase": "^5.8.4",
+    "firebase": "^5.0.0",
+    "firebase-tools": "^6.5.0",
     "marked": "^0.6.1",
     "nuxt": "^2.4.5",
     "vue": "^2.6.7",
-    "vuexfire": "^3.0.0-alpha.14"
+    "vuexfire": "3.0.0-alpha.9"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",
