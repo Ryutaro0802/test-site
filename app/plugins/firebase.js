@@ -1,14 +1,13 @@
 import firebase from 'firebase';
-import env from '~/firebase-env';
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
-    apiKey: env.API_KEY,
-    authDomain: env.AUTHD_OMAIN,
-    databaseURL: env.DATABASE_URL,
-    projectId: env.PROJECT_ID,
-    storageBucket: env.STORAGE_BUCKET,
-    messagingSenderId: env.MESSAGING_SENDER_ID
+    apiKey: process.env.APIKEY,
+    authDomain: process.env.AUTHDOMAIN,
+    databaseURL: process.env.DATABASEURL,
+    projectId: process.env.PROJECTID,
+    storageBucket: process.env.STORAGEBUCKET,
+    messagingSenderId: process.env.MESSAGINGSENDERID
   });
 }
 

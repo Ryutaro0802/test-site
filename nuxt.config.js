@@ -25,6 +25,15 @@ module.exports = {
    */
   loading: { color: '#222222' },
 
+  env: {
+    APIKEY: 'AIzaSyA2sHdXkqVZ0a',
+    AUTHDOMAIN: 'blog-53beb.firebaseapp.com',
+    DATABASEURL: 'https://blog-53beb.firebaseio.com',
+    PROJECTID: 'blog-53beb',
+    STORAGEBUCKET: 'blog-53beb.appspot.com',
+    MESSAGINGSENDERID: '458515467341'
+  },
+
   /*
    ** Global CSS
    */
@@ -56,6 +65,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
+    publicPath: '/assets/',
     postcss: {
       preset: {
         features: {
