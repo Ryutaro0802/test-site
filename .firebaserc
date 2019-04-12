@@ -1,5 +1,6 @@
 {
   "projects": {
-    "blog": "blog-53beb"
+    "blog": "blog-53beb",
+    "default": "blog-53beb"
   }
 }

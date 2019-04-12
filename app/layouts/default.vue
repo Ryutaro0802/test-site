@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div v-if="!isLoaded">Loading..</div>
+    <div v-if="!isLoaded">
+      Loading..
+    </div>
     <div v-show="isLoaded" class="container">
       <BlLogo>
         memo.

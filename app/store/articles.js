@@ -15,8 +15,12 @@ export const getters = {
     const tags = rootState.tags.tags;
     return state.articles.map(article => {
       article.tags = tags.filter(tag => article.tagIds.includes(tag.id));
-      article.createdAt = dayjs(article.createdAt.nanoseconds).format('YYYY-MM-DD');
-      article.updatedAt = dayjs(article.updatedAt.nanoseconds).format('YYYY-MM-DD');
+      article.createdAt = dayjs(article.createdAt.nanoseconds).format(
+        'YYYY-MM-DD'
+      );
+      article.updatedAt = dayjs(article.updatedAt.nanoseconds).format(
+        'YYYY-MM-DD'
+      );
       return article;
     });
   },
@@ -33,21 +37,9 @@ export const actions = {
   INIT_ARTICLES: firebaseAction(({ bindFirebaseRef }) => {
     bindFirebaseRef('articles', articlesCollection);
   }),
-  INIT_SINGLE_ARTICLE({ commit }, { id }) {
-    return new Promise(async (resolve, reject) => {
-      await articlesCollection
-        .doc(id)
-        .get()
-        .then(doc => {
-          if (doc.exists) {
-            const article = doc.data();
-            commit('saveArticle', { article });
-            resolve();
-          } else {
-            throw console.error('No such document');
-          }
-        });
-    });
+  async INIT_SINGLE_ARTICLE({ commit }, { id }) {
+    const snapshot = await articlesCollection.doc(id).get();
+    commit('saveArticle', { article: snapshot.data() });
   },
   ADD_ARTICLE: firebaseAction(
     (ctx, { title, text, tagIds, createdAt, updatedAt }) => {
