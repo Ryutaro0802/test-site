@@ -30,9 +30,9 @@
       </div>
       <div class="field is-grouped">
         <div class="control">
-          <button class="button is-link">
-            Submit
-          </button>
+          <BlButton>
+            送信
+          </BlButton>
         </div>
       </div>
     </form>
@@ -44,6 +44,7 @@ import firebase from '~/plugins/firebase';
 import { mapGetters, mapActions } from 'vuex';
 import BlInput from '~/components/atoms/bl-input';
 import BlCheckbox from '~/components/atoms/bl-checkbox';
+import BlButton from '~/components/atoms/bl-button';
 import BlMarkdownPreview from '~/components/molecules/bl-markdown_preview/';
 
 export default {
@@ -52,6 +53,7 @@ export default {
   components: {
     BlInput,
     BlCheckbox,
+    BlButton,
     BlMarkdownPreview
   },
   data() {
