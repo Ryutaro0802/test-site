@@ -3,65 +3,42 @@
     <h1 class="title is-1">
       リソースアップロード
     </h1>
-
-    <div v-if="!user">
-      <a class="button" @click="callAuth">SignIn</a>
-    </div>
-    <template v-else>
-      <form @submit.prevent="addPost">
-        <div class="field">
-          <label class="label">Title</label>
-          <div class="control">
-            <input
-              v-model="title"
-              class="input"
-              type="text"
-              name="title"
-              required
-              placeholder="Title"
-              @input="titleInput"
-            />
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="label">Text</label>
-          <div class="control">
-            <textarea
-              v-model="text"
-              class="textarea"
-              name="text"
-              required
-              placeholder="Text"
-              @input="textInput"
-            />
-          </div>
-        </div>
-
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link">
-              Submit
-            </button>
-          </div>
-        </div>
-      </form>
-    </template>
+    <form @submit.prevent="fileSubmit">
+      <input type="file" @change="fileUpload" />
+      <button>アップロード</button>
+    </form>
+    <p>
+      {{ fileName }}
+    </p>
   </div>
 </template>
 
 <script>
-// import dayjs from 'dayjs';
+import firebase from '~/plugins/firebase';
+const storage = firebase.storage();
 
 export default {
   layout: 'column2',
   data() {
     return {
-      title: '',
-      text: ''
+      uploadFile: null,
+      fileName: ''
     };
+  },
+  methods: {
+    fileUpload(e) {
+      const file = e.target.files;
+      this.fileName = file[0].name;
+      this.uploadFile = new Blob(file, { type: 'image/jpeg' });
+    },
+    async fileSubmit() {
+      const uploadRef = storage.ref('images/').child(this.fileName);
+      try {
+        await uploadRef.put(this.uploadFile);
+      } catch (e) {
+        console.log(e);
+      }
+    }
   }
 };
 </script>
-
-<style></style>
