@@ -16,7 +16,7 @@
     "deploy": "firebase deploy",
     "precommit": "npm run lint",
     "storybook": "start-storybook",
-    "fix": "yarn eslint --fix ./app/pages/**/*.vue ./app/components/**/*.vue"
+    "fix": "yarn eslint --fix ./app/pages/**/*.vue ./app/components/**/*.vue ./app/plugins/**/*.js ./app/store/**/*.js ./app/middleware/**/*.js"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
