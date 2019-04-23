@@ -17,7 +17,7 @@
       :value="nativeValue"
       :true-value="trueValue"
       :false-value="falseValue"
-    />
+    >
     <span class="check" :class="type" />
     <span class="control-label">
       <slot />

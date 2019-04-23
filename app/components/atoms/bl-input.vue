@@ -13,7 +13,7 @@
       @input="onInput"
       @blur="onBlur"
       @focus="onFocus"
-    />
+    >
     <textarea
       v-else
       ref="textarea"
