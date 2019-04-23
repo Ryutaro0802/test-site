@@ -1,6 +1,6 @@
 import auth from '~/plugins/auth';
 
-export default async function({ store, redirect }) {
+export default async function ({ store, redirect }) {
   if (!store.state.user) {
     return redirect('/author');
   } else {

@@ -3,7 +3,6 @@
     <h1 class="title is-1">
       リソースアップロード
     </h1>
-
     <div v-if="!user">
       <a class="button" @click="callAuth">SignIn</a>
     </div>
@@ -20,7 +19,7 @@
               required
               placeholder="Title"
               @input="titleInput"
-            />
+            >
           </div>
         </div>
 
