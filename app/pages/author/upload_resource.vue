@@ -4,7 +4,8 @@
       リソースアップロード
     </h1>
     <form @submit.prevent="fileSubmit">
-      <input type="file" @change="fileUpload" />
+      <BlInputfile @change="fileUpload" />
+      <!-- <input type="file" @change="fileUpload" /> -->
       <button>アップロード</button>
     </form>
     <p>
@@ -15,10 +16,15 @@
 
 <script>
 import firebase from '~/plugins/firebase';
+import BlInputfile from '~/components/atoms/bl-input_file';
+
 const storage = firebase.storage();
 
 export default {
   layout: 'column2',
+  components: {
+    BlInputfile
+  },
   data() {
     return {
       uploadFile: null,

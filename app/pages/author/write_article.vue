@@ -30,9 +30,7 @@
       </div>
       <div class="field is-grouped">
         <div class="control">
-          <BlButton>
-            送信
-          </BlButton>
+          <BlButton>送信</BlButton>
         </div>
       </div>
     </form>
