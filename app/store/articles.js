@@ -13,7 +13,7 @@ export const state = () => ({
 export const getters = {
   articles: (state, commit, rootState) => {
     const tags = rootState.tags.tags;
-    return state.articles.map(article => {
+    return state.articles.map((article) => {
       article.tags = tags.filter(tag => article.tagIds.includes(tag.id));
       article.createdAt = dayjs(article.createdAt.nanoseconds).format(
         'YYYY-MM-DD'
