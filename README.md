@@ -2,6 +2,10 @@
 
 > My extraordinary Nuxt.js project
 
+## Node Version
+
+v8.9.4
+
 ## Build Setup
 
 ``` bash
