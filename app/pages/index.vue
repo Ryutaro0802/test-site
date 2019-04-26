@@ -18,7 +18,7 @@
 import { mapGetters, mapActions } from 'vuex';
 // import BlTwitterButton from '~/components/atoms/bl-twitter_button';
 // import BlIconRss from '~/components/atoms/bl-icon_rss';
-import BlArticleCard from '~/components/molecules/bl-article_card';
+import BlArticleCard from '~/components/molecules/BlArticleCard';
 
 export default {
   components: {
