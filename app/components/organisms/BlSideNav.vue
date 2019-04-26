@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import SideNavItem from '~/components/organisms/side_nav_item';
+import SideNavItem from '~/components/organisms/BlSideNavItem';
 
 export default {
   components: {

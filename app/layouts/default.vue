@@ -15,7 +15,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import BlNavbar from '~/components/organisms/bl-navbar';
+import BlNavbar from '~/components/organisms/BlNavBar';
 import BlLogo from '~/components/atoms/bl-logo';
 
 export default {

@@ -19,8 +19,8 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import HeadNav from '~/components/organisms/head_nav';
-import SideNav from '~/components/organisms/side_nav';
+import HeadNav from '~/components/organisms/BlHeadNav';
+import SideNav from '~/components/organisms/BlSideNav';
 
 export default {
   components: {

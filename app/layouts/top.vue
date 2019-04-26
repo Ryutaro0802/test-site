@@ -7,7 +7,7 @@
           <nuxt />
         </div>
         <div class="column is-3 ">
-          <BlSideNav />
+          <BlSideNavUser />
         </div>
       </div>
     </div>
@@ -17,14 +17,14 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import BlSideNav from '~/components/organisms/bl-side_nav_user';
-import BlNavbar from '~/components/organisms/bl-navbar';
-import BlFooter from '~/components/organisms/bl-footer';
+import BlSideNavUser from '~/components/organisms/BlSideNavUser';
+import BlNavbar from '~/components/organisms/BlNavBar';
+import BlFooter from '~/components/organisms/BlFooter';
 
 export default {
   components: {
     BlNavbar,
-    BlSideNav,
+    BlSideNavUser,
     BlFooter
   },
   computed: {
