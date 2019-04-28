@@ -13,6 +13,7 @@
       <div class="field">
         <label class="label">テキスト</label>
         <div class="control">
+          <BlWysiwygEditor />
           <BlMarkdownPreview v-model="text" />
         </div>
       </div>
@@ -44,6 +45,7 @@ import BlInput from '~/components/atoms/bl-input';
 import BlCheckbox from '~/components/atoms/BlCheckbox';
 import BlButton from '~/components/atoms/BlButton';
 import BlMarkdownPreview from '~/components/molecules/BlMarkdownPreview/';
+import BlWysiwygEditor from '~/components/organisms/BlWysiwygEditor';
 
 export default {
   layout: 'column2',
@@ -52,7 +54,8 @@ export default {
     BlInput,
     BlCheckbox,
     BlButton,
-    BlMarkdownPreview
+    BlMarkdownPreview,
+    BlWysiwygEditor
   },
   data() {
     return {

@@ -29,6 +29,7 @@
     "marked": "^0.6.1",
     "nuxt": "^2.4.5",
     "tiptap": "^1.16.2",
+    "tiptap-extensions": "^1.16.2",
     "vue": "^2.6.7",
     "vuexfire": "3.0.0-alpha.9"
   },
