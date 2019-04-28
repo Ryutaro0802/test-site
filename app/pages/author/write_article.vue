@@ -13,8 +13,7 @@
       <div class="field">
         <label class="label">テキスト</label>
         <div class="control">
-          <BlWysiwygEditor />
-          <BlMarkdownPreview v-model="text" />
+          <BlWysiwygEditor v-model="text" />
         </div>
       </div>
       <div class="block">
@@ -44,7 +43,6 @@ import { mapGetters, mapActions } from 'vuex';
 import BlInput from '~/components/atoms/bl-input';
 import BlCheckbox from '~/components/atoms/BlCheckbox';
 import BlButton from '~/components/atoms/BlButton';
-import BlMarkdownPreview from '~/components/molecules/BlMarkdownPreview/';
 import BlWysiwygEditor from '~/components/organisms/BlWysiwygEditor';
 
 export default {
@@ -54,7 +52,6 @@ export default {
     BlInput,
     BlCheckbox,
     BlButton,
-    BlMarkdownPreview,
     BlWysiwygEditor
   },
   data() {
@@ -87,6 +84,9 @@ export default {
       this.title = '';
       this.text = '';
       this.tagIds = [];
+    },
+    changeContent(html) {
+      console.log(html);
     },
     ...mapActions({
       ADD_ARTICLE: 'articles/ADD_ARTICLE',

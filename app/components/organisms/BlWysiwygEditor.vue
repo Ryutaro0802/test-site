@@ -104,7 +104,7 @@
         </button>
       </div>
     </editor-menu-bar>
-    <editor-content class="editor__content" :editor="editor" />
+    <editor-content class="editor__content" :editor="editor" style="border: 1px solid black;min-height: 100px;" />
 
     <div class="editor-actions">
       <button type="button">
@@ -166,6 +166,12 @@ export default {
     BlQuoteIcon,
     BlAddPhotoIcon
   },
+  props: {
+    content: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
       editor: new Editor({
@@ -187,28 +193,7 @@ export default {
           new Strike(),
           new History()
         ],
-        content: `
-          <h2>
-            Hi there,
-          </h2>
-          <p>
-            this is a very <em>basic</em> example of tiptap.
-          </p>
-          <pre><code>body { display: none; }</code></pre>
-          <ul>
-            <li>
-              A regular list
-            </li>
-            <li>
-              With regular items
-            </li>
-          </ul>
-          <blockquote>
-            It's amazing 👏
-            <br />
-            – mom
-          </blockquote>
-        `,
+        content: this.content,
         onUpdate: ({ getJSON, getHTML }) => {
           this.json = getJSON();
           this.html = getHTML();
@@ -217,6 +202,12 @@ export default {
       json: 'Update content to see changes',
       html: 'Update content to see changes'
     };
+  },
+  watch: {
+    html() {
+      console.log('childComponent log: ', this.html);
+      this.$emit('input', this.html);
+    }
   },
   beforeDestroy() {
     this.editor.destroy();
